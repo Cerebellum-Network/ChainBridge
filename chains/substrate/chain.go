@@ -66,7 +66,12 @@ func InitializeChain(cfg *core.ChainConfig, logger log15.Logger, sysErr chan<- e
 	}
 
 	krp := kp.(*sr25519.Keypair).AsKeyringPair()
-	krpv2 := (*signature.KeyringPair)(krp)
+	//krpv2 := (*signature.KeyringPair)(krp)
+	krpv2, err := krp.(*signature.KeyPair)
+  if err != nil {
+		return nil, err
+	}
+
 	// Attempt to load latest block
 	bs, err := blockstore.NewBlockstore(cfg.BlockstorePath, cfg.Id, kp.Address())
 	if err != nil {
