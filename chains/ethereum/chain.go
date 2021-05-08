@@ -75,17 +75,6 @@ func setupBlockstore(cfg *Config, kp *secp256k1.Keypair) (*blockstore.Blockstore
 		return nil, err
 	}
 
-	if !cfg.freshStart {
-		latestBlock, err := bs.TryLoadLatestBlock()
-		if err != nil {
-			return nil, err
-		}
-
-		if latestBlock.Cmp(cfg.startBlock) == 1 {
-			cfg.startBlock = latestBlock
-		}
-	}
-
 	return bs, nil
 }
 

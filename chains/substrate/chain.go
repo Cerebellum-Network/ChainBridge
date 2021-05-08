@@ -73,12 +73,6 @@ func InitializeChain(cfg *core.ChainConfig, logger log15.Logger, sysErr chan<- e
 		return nil, err
 	}
 	startBlock := parseStartBlock(cfg)
-	if !cfg.FreshStart {
-		startBlock, err = checkBlockstore(bs, startBlock)
-		if err != nil {
-			return nil, err
-		}
-	}
 
 	stop := make(chan int)
 	// Setup connection
