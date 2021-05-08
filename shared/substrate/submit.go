@@ -13,6 +13,7 @@ import (
 )
 
 func SubmitTx(client *Client, method Method, args ...interface{}) error {
+    log15.Info("In SubmitTx")
 	// Create call and extrinsic
 	call, err := types.NewCall(
 		client.Meta,
@@ -22,20 +23,24 @@ func SubmitTx(client *Client, method Method, args ...interface{}) error {
 	if err != nil {
 		return err
 	}
+	log15.Info("Before NewExtrinsic")
 	ext := types.NewExtrinsic(call)
 
+    log15.Info("Before GetRuntimeVersionLatest")
 	// Get latest runtime version
 	rv, err := client.Api.RPC.State.GetRuntimeVersionLatest()
 	if err != nil {
 		return err
 	}
 
+    log15.Info("Before AccountInfo")
 	var acct types.AccountInfo
 	_, err = QueryStorage(client, "System", "Account", client.Key.PublicKey, nil, &acct)
 	if err != nil {
 		return err
 	}
 
+	log15.Info("Before SignatureOptions")
 	// Sign the extrinsic
 	o := types.SignatureOptions{
 		BlockHash:          client.Genesis,
@@ -51,6 +56,7 @@ func SubmitTx(client *Client, method Method, args ...interface{}) error {
 		return err
 	}
 
+	log15.Info("Before SubmitAndWatchExtrinsic")
 	// Submit and watch the extrinsic
 	sub, err := client.Api.RPC.Author.SubmitAndWatchExtrinsic(ext)
 	if err != nil {
@@ -58,6 +64,7 @@ func SubmitTx(client *Client, method Method, args ...interface{}) error {
 	}
 
 	for {
+	    log15.Info("Before In for")
 		status := <-sub.Chan()
 		switch {
 		case status.IsInBlock:

@@ -87,6 +87,7 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 
 	meta := c.getMetadata()
 
+    c.log.Debug("Before NewCall")
 	// Create call and extrinsic
 	call, err := types.NewCall(
 		&meta,
@@ -96,14 +97,17 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 	if err != nil {
 		return fmt.Errorf("failed to construct call: %w", err)
 	}
+    c.log.Debug("Before NewExtrinsic")
 	ext := types.NewExtrinsic(call)
 
+    c.log.Debug("Before GetRuntimeVersionLatest")
 	// Get latest runtime version
 	rv, err := c.api.RPC.State.GetRuntimeVersionLatest()
 	if err != nil {
 		return err
 	}
 
+    c.log.Debug("Before getLatestNonce")
 	c.nonceLock.Lock()
 	latestNonce, err := c.getLatestNonce()
 	if err != nil {
@@ -114,6 +118,7 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 		c.nonce = latestNonce
 	}
 
+    c.log.Debug("Before SignatureOptions")
 	// Sign the extrinsic
 	o := types.SignatureOptions{
 		BlockHash:          c.genesisHash,
@@ -125,12 +130,14 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 		TransactionVersion: 1,
 	}
 
+    c.log.Debug("Before Sign")
 	err = ext.Sign(*c.key, o)
 	if err != nil {
 		c.nonceLock.Unlock()
 		return err
 	}
 
+    c.log.Debug("Before SubmitAndWatchExtrinsic")
 	// Submit and watch the extrinsic
 	sub, err := c.api.RPC.Author.SubmitAndWatchExtrinsic(ext)
 	c.nonce++
