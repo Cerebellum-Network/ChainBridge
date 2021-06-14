@@ -169,6 +169,14 @@ type EventRegistryTmp struct {
 	Topics []types.Hash
 }
 
+type EventDataStringSet struct {
+	AccountId types.AccountID
+}
+
+type EventDataStringChanged struct {
+	AccountId types.AccountID
+}
+
 type Events struct {
 	types.EventRecords
 	events.Events
@@ -199,4 +207,6 @@ type Events struct {
 	Registry_Mint                    []EventRegistryMint                   //nolint:stylecheck,golint
 	Registry_RegistryCreated         []EventRegistryRegistryCreated        //nolint:stylecheck,golint
 	Registry_RegistryTmp             []EventRegistryTmp                    //nolint:stylecheck,golint
+	CereDDCModule_DataStringSet      []EventDataStringSet                  //nolint:stylecheck,golint
+	CereDDCModule_DataStringChanged  []EventDataStringChanged              //nolint:stylecheck,golint
 }
