@@ -170,11 +170,15 @@ type EventRegistryTmp struct {
 }
 
 type EventDataStringSet struct {
+	Phase     types.Phase
 	AccountId types.AccountID
+	Topics    []types.Hash
 }
 
 type EventDataStringChanged struct {
+	Phase     types.Phase
 	AccountId types.AccountID
+	Topics    []types.Hash
 }
 
 type Events struct {
