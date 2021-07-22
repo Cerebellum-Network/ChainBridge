@@ -147,7 +147,7 @@ func TestCreateAndExecuteErc20DepositProposal(t *testing.T) {
 
 	routeMessageAndWait(t, client, writerA, writerB, m, errA, errB)
 
-	// ethtest.Erc20AssertBalance(t, client, amount, erc20Address, recipient)
+	ethtest.Erc20AssertBalance(t, client, amount, erc20Address, recipient)
 }
 
 func TestCreateAndExecuteErc721Proposal(t *testing.T) {
