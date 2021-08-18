@@ -61,7 +61,7 @@ func TestChain_ListenerShutdownOnFailure(t *testing.T) {
 		t.Fatal("Test timed out")
 	}
 
-	// Tell everyone to shutdown
+	// Tell everyone to shutdown.
 	chain.Stop()
 }
 
