@@ -10,6 +10,7 @@
 # Release Notes
 
 ## [Unreleased]
+- Stopped scanning cere blockchain
 
 ## 2.1.2
 - Fixed health-check endpoint initialization for networks
