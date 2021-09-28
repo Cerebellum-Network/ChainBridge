@@ -76,6 +76,7 @@ func (l *listener) start() error {
 	}
 
 	go func() {
+		// Commented to prevent scanning the cere Blockchain.
 		// err := l.pollBlocks()
 		// if err != nil {
 		// 	l.log.Error("Polling blocks failed", "err", err)
