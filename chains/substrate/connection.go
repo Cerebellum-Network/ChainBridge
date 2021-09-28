@@ -42,17 +42,17 @@ func (c *Connection) getMetadata() (meta types.Metadata) {
 	return meta
 }
 
-// func (c *Connection) updateMetatdata() error {
-// 	c.metaLock.Lock()
-// 	meta, err := c.api.RPC.State.GetMetadataLatest()
-// 	if err != nil {
-// 		c.metaLock.Unlock()
-// 		return err
-// 	}
-// 	c.meta = *meta
-// 	c.metaLock.Unlock()
-// 	return nil
-// }
+func (c *Connection) updateMetatdata() error {
+	c.metaLock.Lock()
+	meta, err := c.api.RPC.State.GetMetadataLatest()
+	if err != nil {
+		c.metaLock.Unlock()
+		return err
+	}
+	c.meta = *meta
+	c.metaLock.Unlock()
+	return nil
+}
 
 func (c *Connection) Connect() error {
 	c.log.Info("Connecting to substrate chain...", "url", c.url)
