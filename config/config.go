@@ -29,7 +29,7 @@ type RawChainConfig struct {
 	Id       string            `json:"id"`       // ChainID
 	Endpoint string            `json:"endpoint"` // url for rpc endpoint
 	From     string            `json:"from"`     // address of key to use
-	Scan     string            `json:"scan"`     // should scan
+	Scan     bool              // should scan
 	Opts     map[string]string `json:"opts"`
 }
 
