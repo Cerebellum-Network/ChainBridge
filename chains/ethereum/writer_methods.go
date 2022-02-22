@@ -35,6 +35,7 @@ func (w *writer) proposalIsComplete(srcId msg.ChainId, nonce msg.Nonce, dataHash
 		w.log.Error("Failed to check proposal existence", "err", err)
 		return false
 	}
+	w.log.Info("Proposal status", "Completed", prop.Status)
 	return prop.Status == PassedStatus || prop.Status == TransferredStatus || prop.Status == CancelledStatus
 }
 
@@ -45,6 +46,7 @@ func (w *writer) proposalIsFinalized(srcId msg.ChainId, nonce msg.Nonce, dataHas
 		w.log.Error("Failed to check proposal existence", "err", err)
 		return false
 	}
+	w.log.Info("Proposal status", "Finalized", prop.Status)
 	return prop.Status == TransferredStatus || prop.Status == CancelledStatus // Transferred (3)
 }
 
@@ -54,6 +56,7 @@ func (w *writer) proposalIsPassed(srcId msg.ChainId, nonce msg.Nonce, dataHash [
 		w.log.Error("Failed to check proposal existence", "err", err)
 		return false
 	}
+	w.log.Info("Proposal status", "Passed", prop.Status)
 	return prop.Status == PassedStatus
 }
 
@@ -225,9 +228,11 @@ func (w *writer) watchThenExecute(m msg.Message, data []byte, dataHash [32]byte,
 				depositNonce := evt.Topics[2].Big().Uint64()
 				status := evt.Topics[3].Big().Uint64()
 
+				w.log.Info("Proposal status", "execute proposal", uint8(status))
 				if m.Source == msg.ChainId(sourceId) &&
 					m.DepositNonce.Big().Uint64() == depositNonce &&
 					utils.IsFinalized(uint8(status)) {
+					w.log.Info("Inside if loop", "proposal status", uint8(status), "Status", utils.IsFinalized(uint8(status)) )
 					w.executeProposal(m, data, dataHash)
 					return
 				} else {
