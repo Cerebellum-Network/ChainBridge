@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- Added condition to prevent execution of executeProposal method
+- Added condition to prevent excess execution of executeProposal method
 
 ## v2.2.0
 - Added ability to disable network scanning
