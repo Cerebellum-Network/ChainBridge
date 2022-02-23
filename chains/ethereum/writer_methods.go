@@ -225,17 +225,18 @@ func (w *writer) watchThenExecute(m msg.Message, data []byte, dataHash [32]byte,
 				depositNonce := evt.Topics[2].Big().Uint64()
 				status := evt.Topics[3].Big().Uint64()
 
-				// Proposal status either transferred or cancelled.
-				if w.proposalIsFinalized(m.Source, m.DepositNonce, dataHash) {
-					w.log.Info("Proposal finalized on chain", "src", m.Source, "dst", m.Destination, "nonce", m.DepositNonce)
-					return
-				}
-
 				if m.Source == msg.ChainId(sourceId) &&
-					m.DepositNonce.Big().Uint64() == depositNonce &&
-					utils.IsFinalized(uint8(status)) {
-					w.executeProposal(m, data, dataHash)
-					return
+					m.DepositNonce.Big().Uint64() == depositNonce {
+					if w.proposalIsFinalized(m.Source, m.DepositNonce, dataHash) {
+						w.log.Info("Proposal finalized on chain", "src", m.Source, "dst", m.Destination, "nonce", m.DepositNonce)
+						return
+					} else {
+						// check if proposal status is passed
+						if utils.IsFinalized(uint8(status)) {
+							w.executeProposal(m, data, dataHash)
+							return
+						}
+					}
 				} else {
 					w.log.Trace("Ignoring event", "src", sourceId, "nonce", depositNonce)
 				}
