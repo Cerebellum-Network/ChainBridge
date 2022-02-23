@@ -231,9 +231,9 @@ func (w *writer) watchThenExecute(m msg.Message, data []byte, dataHash [32]byte,
 
 				w.log.Info("Proposal status", "execute proposal", uint8(status))
 
-				// Verify proposal is still open for voting, otherwise no need to retry
-				if w.proposalIsComplete(m.Source, m.DepositNonce, dataHash) {
-					w.log.Info("Proposal voting complete on chain", "src", m.Source, "dst", m.Destination, "nonce", m.DepositNonce)
+				// Proposal status either transferred or cancelled.
+				if w.proposalIsFinalized(m.Source, m.DepositNonce, dataHash) {
+					w.log.Info("Proposal finalized on chain", "src", m.Source, "dst", m.Destination, "nonce", m.DepositNonce)
 					return
 				}
 
