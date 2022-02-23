@@ -216,6 +216,7 @@ func (w *writer) watchThenExecute(m msg.Message, data []byte, dataHash [32]byte,
 
 			// query for logs
 			query := buildQuery(w.cfg.bridgeContract, utils.ProposalEvent, latestBlock, latestBlock)
+			w.log.Info("query Event", "Query", query)
 			evts, err := w.conn.Client().FilterLogs(context.Background(), query)
 			if err != nil {
 				w.log.Error("Failed to fetch logs", "err", err)
@@ -229,6 +230,13 @@ func (w *writer) watchThenExecute(m msg.Message, data []byte, dataHash [32]byte,
 				status := evt.Topics[3].Big().Uint64()
 
 				w.log.Info("Proposal status", "execute proposal", uint8(status))
+
+				// Verify proposal is still open for voting, otherwise no need to retry
+				if w.proposalIsComplete(m.Source, m.DepositNonce, dataHash) {
+					w.log.Info("Proposal voting complete on chain", "src", m.Source, "dst", m.Destination, "nonce", m.DepositNonce)
+					return
+				}
+
 				if m.Source == msg.ChainId(sourceId) &&
 					m.DepositNonce.Big().Uint64() == depositNonce &&
 					utils.IsFinalized(uint8(status)) {
