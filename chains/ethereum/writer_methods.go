@@ -112,7 +112,9 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 	// watch for execution event
 	go w.watchThenExecute(m, data, dataHash, latestBlock)
 
-	w.voteProposal(m, dataHash)
+	if w.shouldVote(m, dataHash) {
+		w.voteProposal(m, dataHash)
+	}
 
 	return true
 }
