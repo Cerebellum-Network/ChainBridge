@@ -10,7 +10,7 @@ services:
     container_name: bridge
     environment:
       - KEYSTORE_PASSWORD=12345678
-    command: --config /config/config.json --keystore /keys --verbosity trce
+    command: --config /config/config.json --keystore /keys --verbosity trce --metrics
     volumes:
       - ./config:/config
       - ./keys:/keys/

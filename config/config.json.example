@@ -1,0 +1,54 @@
+{
+  "chains": [
+    {
+      "name": "eth",
+      "type": "ethereum",
+      "id": "0",
+      "endpoint": "https://goerli.infura.io/v3/178b87e860404572bc217ca53fe594bd",
+      "from": "0x9A9Dc7B059E9Add0D2d154A17139d8f2c4B38f6f",
+      "scan": true,
+      "opts": {
+        "bridge": "0xa806cA3bD88F790744462cBC34c40EDd5b8dc2Dd",
+        "erc20Handler": "0xf934Bfc8B5241b6C9e0DfC9A329AD687e79c5498",
+        "erc721Handler": "0x0000000000000000000000000000000000000000",
+        "genericHandler": "0x0000000000000000000000000000000000000000",
+        "startBlock": "6455184",
+        "blockConfirmations": "12",
+        "http": "true"
+      }
+    },
+    {
+      "name": "polygon",
+      "type": "ethereum",
+      "id": "2",
+      "endpoint": "https://polygon-mumbai.infura.io/v3/178b87e860404572bc217ca53fe594bd",
+      "from": "0x19631d940Cc52CB5533eAbFa66bE139099410efE",
+      "scan": true,
+      "opts": {
+        "bridge": "0x80C8ee1C89c574eB97B3783f0B9C9483EdF8B92E",
+        "erc20Handler": "0x53cc2228587EAca7CcE3189f24BC9bd490E43C48",
+        "erc721Handler": "0x0000000000000000000000000000000000000000",
+        "genericHandler": "0x0000000000000000000000000000000000000000",
+        "startBlock": "25318033",
+        "blockConfirmations": "12",
+        "http": "true"
+      }
+    },
+    {
+      "name": "sub",
+      "type": "substrate",
+      "id": "1",
+      "endpoint": "wss://archive.devnet.cere.network:9945",
+      "from": "5HWFVHVcREiDLwnsqEEyjkbDFtNXjpWrsgpkZUsQVVUPtUEA",
+      "scan": true,
+      "nativeTokenSymbol": "CERE",
+      "chainbridgePalletName": "chainBridge",
+      "bridgeFeeValue": 0,
+      "transferPalletName": "erc20",
+      "transferFunctionName": "transferNative",
+      "opts": {
+        "startBlock": "3973466"
+      }
+    }
+  ]
+}
