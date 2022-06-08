@@ -166,21 +166,24 @@ MKdocs will generate static HTML files for Chainsafe markdown files located in `
 
 # Local run
 ## Prepare:
-
-1. Import keys:
+1. Build executable:
 ```
-cmd/chainbridge/chainbridge accounts import --privateKey "improve nominee response kangaroo keen gain antenna pepper spike credit pony parrot" --sr25519
+`make build`
+```
+2. Import keys from devnet:
+```
+build/chainbridge accounts import --privateKey "improve nominee response kangaroo keen gain antenna pepper spike credit pony parrot" --sr25519
 ```
 ```
-cmd/chainbridge/chainbridge accounts import --privateKey 5502ab637600e552b45d0608f8f2888a5feafa2a5df1bc67eb9ecc69a9c6b990
+build/chainbridge accounts import --privateKey 5502ab637600e552b45d0608f8f2888a5feafa2a5df1bc67eb9ecc69a9c6b990
 ```
 ```
-cmd/chainbridge/chainbridge accounts import --privateKey a5485b158e045febc939d9cedc79910f26efe48c31f65643fba3e6dd0f734282
+build/chainbridge accounts import --privateKey a5485b158e045febc939d9cedc79910f26efe48c31f65643fba3e6dd0f734282
 ```
-
-    Enter a password after a prompt appears: 12345678
-
-2. Copy `config/config.json.example` to `config/config.json` folder:
+```
+Enter a password after a prompt appears: 12345678
+```
+3. Copy `config/config.json.example` to `config/config.json` folder:
 ```
 cp config/config.json.example config/config.json
 ```
@@ -198,7 +201,7 @@ export KEYSTORE_PASSWORD=12345678
 ```
 2. Run executable:
 ```
-cmd/chainbridge/chainbridge --config config/config.json --keystore ./keys --verbosity trce  --metrics
+build/chainbridge --config config/config.json --keystore ./keys --verbosity trce  --metrics
 ```
 
 # Testing
