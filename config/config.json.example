@@ -4,7 +4,7 @@
       "name": "eth",
       "type": "ethereum",
       "id": "0",
-      "endpoint": "https://goerli.infura.io/v3/178b87e860404572bc217ca53fe594bd",
+      "endpoint": "https://rpc.goerli.mudit.blog",
       "from": "0x9A9Dc7B059E9Add0D2d154A17139d8f2c4B38f6f",
       "scan": true,
       "opts": {
@@ -21,7 +21,7 @@
       "name": "polygon",
       "type": "ethereum",
       "id": "2",
-      "endpoint": "https://polygon-mumbai.infura.io/v3/178b87e860404572bc217ca53fe594bd",
+      "endpoint": "https://matic-mumbai.chainstacklabs.com",
       "from": "0x19631d940Cc52CB5533eAbFa66bE139099410efE",
       "scan": true,
       "opts": {
