@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- ...
+- Updated chainbridge-utils to v1.1.0
 
 ## v2.3.2
 - Added min gas price check
