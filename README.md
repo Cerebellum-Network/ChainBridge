@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- ...
+- Fix "concurrent map writes" error
 
 ## v2.3.2
 - Added min gas price check
