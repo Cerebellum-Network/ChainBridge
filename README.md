@@ -74,21 +74,6 @@ Used for substrate key management. Only required if connecting to a substrate ch
 
 `make install`: Uses `go install` to add `chainbridge` to your GOBIN.
 
-## Docker 
-The official ChainBridge Docker image can be found here.
-
-To build the Docker image locally run:
-
-```
-docker build -t chainsafe/chainbridge .
-```
-
-To start ChainBridge:
-
-``` 
-docker run -v ./config.json:/config.json chainsafe/chainbridge
-```
-
 # Configuration
 
 > Note: TOML configs have been deprecated in favour of JSON
@@ -181,6 +166,48 @@ MKdocs will generate static HTML files for Chainsafe markdown files located in `
 `make install-mkdocs`: Pull the docker image MkDocs
 
 `make mkdocs`: Run MkDoc's docker image, building and hosting the html files on `localhost:8000`  
+
+# Local run
+## Prepare
+
+1. Build executable:
+    ```
+    make build
+    ```
+2. Import keys from Devnet:
+    ```
+    build/chainbridge accounts import --privateKey "improve nominee response kangaroo keen gain antenna pepper spike credit pony parrot" --sr25519
+    ```
+    ```
+    build/chainbridge accounts import --privateKey 5502ab637600e552b45d0608f8f2888a5feafa2a5df1bc67eb9ecc69a9c6b990
+    ```
+    ```
+    build/chainbridge accounts import --privateKey a5485b158e045febc939d9cedc79910f26efe48c31f65643fba3e6dd0f734282
+    ```
+    ```
+    Enter a password after a prompt appears: <any_password>
+    ```
+3. Copy `config/config.json.example` to `config/config.json` folder:
+    ```
+    cp config/config.json.example config/config.json
+    ```
+    
+## Run app in docker
+
+```
+docker-compose up
+```
+
+## Run app from source code
+
+1. Export password:
+    ```
+    export KEYSTORE_PASSWORD=<any_password>
+    ```
+2. Run executable:
+    ```
+    build/chainbridge --config config/config.json --keystore ./keys --verbosity trce  --metrics
+    ```
 
 # Testing
 
