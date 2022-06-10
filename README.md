@@ -10,6 +10,9 @@
 # Release Notes
 
 ## vNext
+- ...
+
+## v2.4.0
 - Updated chainbridge-utils to v1.1.0
 
 ## v2.3.2
