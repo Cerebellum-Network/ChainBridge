@@ -165,7 +165,7 @@ MKdocs will generate static HTML files for Chainsafe markdown files located in `
 `make mkdocs`: Run MkDoc's docker image, building and hosting the html files on `localhost:8000`  
 
 # Local run
-## Prepare:
+## Prepare
 
 1. Build executable:
     ```
@@ -189,11 +189,13 @@ MKdocs will generate static HTML files for Chainsafe markdown files located in `
     cp config/config.json.example config/config.json
     ```
     
-## Run app in docker:
+## Run app in docker
 
-    docker-compose up
+```
+docker-compose up
+```
 
-## Run app from source code:
+## Run app from source code
 
 1. Export password:
     ```
