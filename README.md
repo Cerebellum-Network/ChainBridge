@@ -12,6 +12,9 @@
 ## vNext
 - ...
 
+## v2.5.0
+- Migrated to GitHub actions
+
 ## v2.4.0
 - Updated chainbridge-utils to v1.1.0
 
