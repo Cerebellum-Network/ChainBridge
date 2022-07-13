@@ -12,7 +12,7 @@ import (
 	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 )
 
-var TestTimeout = time.Second * 15
+var TestTimeout = time.Second * 150
 
 func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 	key, err := types.CreateStorageKey(client.Meta, "System", "Events", nil, nil)

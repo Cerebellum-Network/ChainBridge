@@ -198,8 +198,8 @@ func (l *listener) processEvents(hash types.Hash) error {
 	e := utils.Events{}
 	err = records.DecodeEventRecords(&meta, &e)
 	if err != nil {
-	    l.log.Warn("Can not decode. Skipping...", "block", hash.Hex(), "error", err)
-        return nil
+		l.log.Warn("Can not decode. Skipping...", "block", hash.Hex(), "error", err)
+		return nil
 	}
 
 	l.handleEvents(e)

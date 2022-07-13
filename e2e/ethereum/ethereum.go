@@ -28,7 +28,7 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 )
 
-var TestTimeout = time.Second * 30
+var TestTimeout = time.Second * 300
 
 const EthAEndpoint = "ws://localhost:8545"
 const EthBEndpoint = "ws://localhost:8546"
