@@ -12,6 +12,9 @@
 ## vNext
 - ...
 
+## v2.5.1
+- Increased BlockRetryLimit to 10 for Ethereum/Polygon
+
 ## v2.5.0
 - Migrated to GitHub actions
 
