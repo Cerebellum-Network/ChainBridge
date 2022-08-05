@@ -41,7 +41,6 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Test
         run: |
-          docker-compose -f ./docker-compose-e2e.yml down
           docker-compose -f ./docker-compose-e2e.yml up -d
           sleep 3
           docker ps
