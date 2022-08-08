@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- ...
+- Fixed unit tests and linter
 
 ## v2.5.1
 - Increased BlockRetryLimit to 10 for Ethereum/Polygon
