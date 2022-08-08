@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- ...
+- Fixed unit tests and linter
 
 ## v2.5.0
 - Migrated to GitHub actions
