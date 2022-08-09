@@ -11,6 +11,7 @@
 
 ## vNext
 - Fixed unit tests and linter
+- Increased `ExecuteBlockWatchLimit` up to 200 to fix proposal finalization issue
 
 ## v2.5.1
 - Increased BlockRetryLimit to 10 for Ethereum/Polygon
