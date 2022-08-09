@@ -130,14 +130,14 @@ func (c *Connection) CallOpts() *bind.CallOpts {
 func (c *Connection) SafeEstimateGas(ctx context.Context) (*big.Int, error) {
 
 	suggestedGasPrice, err := c.conn.SuggestGasPrice(context.TODO())
-	c.log.Info("suggestedGasPrice", suggestedGasPrice.String())
+	c.log.Info("Suggested gas price", "suggestedGasPrice", suggestedGasPrice.String())
 
 	if err != nil {
 		return nil, err
 	}
 
 	gasPrice := multiplyGasPrice(suggestedGasPrice, c.gasMultiplier)
-	c.log.Info("gasPrice", gasPrice.String())
+	c.log.Info("Gas price", "gasPrice", gasPrice.String())
 
 	// Check we aren't exceeding our limit
 	if gasPrice.Cmp(c.maxGasPrice) == 1 {
