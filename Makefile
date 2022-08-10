@@ -23,7 +23,7 @@ get:
 	go mod tidy && go mod download
 
 get-lint:
-	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.31.0
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.46.2
 
 .PHONY: lint
 lint:
@@ -61,13 +61,13 @@ rebuild-contracts:
 license:
 	@echo "  >  \033[32mAdding license headers...\033[0m "
 	GO111MODULE=off go get -u github.com/google/addlicense
-	addlicense -c "ChainSafe Systems" -f ./scripts/header.txt -y 2020 .
+	~/go/bin/addlicense -c "ChainSafe Systems" -f ./scripts/header.txt -y 2020 .
 
 ## license-check: Checks for missing license headers
 license-check:
 	@echo "  >  \033[Checking for license headers...\033[0m "
 	GO111MODULE=off go get -u github.com/google/addlicense
-	addlicense -check -c "ChainSafe Systems" -f ./scripts/header.txt -y 2020 .
+	~/go/bin/addlicense -check -c "ChainSafe Systems" -f ./scripts/header.txt -y 2020 .
 
 ## Install dependency subkey
 install-subkey:
