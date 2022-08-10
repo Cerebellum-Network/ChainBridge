@@ -12,7 +12,7 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/prometheus/client_golang v1.4.1
 	github.com/rs/cors v1.7.0 // indirect
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.0
 	github.com/urfave/cli/v2 v2.3.0
 )
 
