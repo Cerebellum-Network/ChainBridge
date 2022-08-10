@@ -12,6 +12,10 @@
 ## vNext
 - Fixed unit tests and linter
 
+## v2.5.2
+- Increased ExecuteBlockWatchLimit to 500 for Ethereum/Polygon
+- Added logs for gasPrice, supportedGasPrice
+
 ## v2.5.1
 - Increased BlockRetryLimit to 10 for Ethereum/Polygon
 
