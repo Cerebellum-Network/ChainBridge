@@ -12,7 +12,7 @@
 ## vNext
 - Fixed unit tests and linter
 - Updated `go-substrate-rpc-client` lib to v2.0.2-cere
-- Added `go-substrate-rpc-client` lib to v2.0.2-cere
+- Added startBlock logs
 
 ## v2.5.2
 - Increased ExecuteBlockWatchLimit to 500 for Ethereum/Polygon
