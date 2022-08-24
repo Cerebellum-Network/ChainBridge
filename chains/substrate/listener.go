@@ -101,6 +101,7 @@ var ErrBlockNotReady = errors.New("required result to be 32 bytes, but got 0")
 // a block will be retried up to BlockRetryLimit times before returning with an error.
 func (l *listener) pollBlocks() error {
 	var currentBlock = l.startBlock
+	l.log.Info("Polling Blocks...", "startBlock", currentBlock)
 	var retry = BlockRetryLimit
 	for {
 		select {
