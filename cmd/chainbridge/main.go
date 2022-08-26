@@ -231,7 +231,7 @@ func run(ctx *cli.Context) error {
 				fmt.Fprintf(w, "Liveness probe is ok")
 			})
 			http.HandleFunc("/health/readiness", func(w http.ResponseWriter, r *http.Request) {
-				fmt.Fprintf(w, "Rediness probe is ok")
+				fmt.Fprintf(w, "Readiness probe is ok")
 			})
 			http.Handle("/metrics", promhttp.Handler())
 			for _, c := range c.Registry {
