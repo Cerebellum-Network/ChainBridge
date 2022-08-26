@@ -227,6 +227,12 @@ func run(ctx *cli.Context) error {
 		h := health.NewHealthServer(port, c.Registry, int(blockTimeout))
 
 		go func() {
+			http.HandleFunc("/liveness", func(w http.ResponseWriter, r *http.Request) {
+				fmt.Fprintf(w, "Liveness probe is ok")
+			})
+			http.HandleFunc("/readiness", func(w http.ResponseWriter, r *http.Request) {
+				fmt.Fprintf(w, "Rediness probe is ok")
+			})
 			http.Handle("/metrics", promhttp.Handler())
 			for _, c := range c.Registry {
 				http.HandleFunc(fmt.Sprintf("/health/%s", c.Name()), h.HealthStatus)
