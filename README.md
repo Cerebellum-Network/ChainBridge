@@ -10,9 +10,13 @@
 # Release Notes
 
 ## vNext
+- ...
+
+## v2.6.0
 - Fixed unit tests and linter
 - Updated `go-substrate-rpc-client` lib to v2.0.2-cere
 - Added startBlock logs
+- Implemented liveness/readiness probe
 
 ## v2.5.2
 - Increased ExecuteBlockWatchLimit to 500 for Ethereum/Polygon
