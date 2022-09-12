@@ -57,7 +57,7 @@ func TestChain_ListenerShutdownOnFailure(t *testing.T) {
 		if err.Error() != ErrFatalPolling.Error() {
 			t.Fatalf("Unexpected error: %s", err)
 		}
-	case <-time.After(time.Second * 30):
+	case <-time.After(time.Second * 90):
 		t.Fatal("Test timed out")
 	}
 

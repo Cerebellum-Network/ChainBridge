@@ -10,7 +10,13 @@
 # Release Notes
 
 ## vNext
-- ...
+- 
+
+## v2.6.0
+- Fixed unit tests and linter
+- Updated `go-substrate-rpc-client` lib to v2.0.2-cere
+- Added startBlock logs
+- Implemented liveness/readiness probe
 
 ## v2.5.2
 - Increased ExecuteBlockWatchLimit to 500 for Ethereum/Polygon
@@ -216,7 +222,7 @@ docker-compose up
     ```
 2. Run executable:
     ```
-    build/chainbridge --config config/config.json --keystore ./keys --verbosity trce  --metrics
+    build/chainbridge --config config/config.json --keystore ./keys --verbosity trce  --metrics --blockstore ./blockstore
     ```
 
 # Testing

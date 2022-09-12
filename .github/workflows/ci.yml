@@ -83,10 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.36
-          args: --timeout=5m
+      - name: Lint
+        run: make lint
       - name: License Check
         run: make license-check

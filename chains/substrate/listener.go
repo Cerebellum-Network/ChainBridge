@@ -101,6 +101,7 @@ var ErrBlockNotReady = errors.New("required result to be 32 bytes, but got 0")
 // a block will be retried up to BlockRetryLimit times before returning with an error.
 func (l *listener) pollBlocks() error {
 	var currentBlock = l.startBlock
+	l.log.Info("Polling Blocks...", "startBlock", currentBlock)
 	var retry = BlockRetryLimit
 	for {
 		select {
@@ -198,8 +199,8 @@ func (l *listener) processEvents(hash types.Hash) error {
 	e := utils.Events{}
 	err = records.DecodeEventRecords(&meta, &e)
 	if err != nil {
-	    l.log.Warn("Can not decode. Skipping...", "block", hash.Hex(), "error", err)
-        return nil
+		l.log.Warn("Can not decode. Skipping...", "block", hash.Hex(), "error", err)
+		return nil
 	}
 
 	l.handleEvents(e)
