@@ -13,7 +13,7 @@ require (
 	github.com/prometheus/client_golang v1.4.1
 	github.com/rs/cors v1.7.0 // indirect
 	github.com/stretchr/testify v1.7.0
-	github.com/urfave/cli/v2 v2.3.0
+	github.com/urfave/cli/v2 v2.16.3
 )
 
 replace github.com/centrifuge/go-substrate-rpc-client/v2 v2.0.1 => github.com/Cerebellum-Network/go-substrate-rpc-client/v2 v2.0.2-cere
