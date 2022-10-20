@@ -5,7 +5,7 @@ package utils
 
 import (
 	events "github.com/Cerebellum-Network/chainbridge-substrate-events"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 )
 
 type EventErc721Minted struct {
@@ -189,13 +189,13 @@ type Events struct {
 	Erc721_Burned                    []EventErc721Burned                   //nolint:stylecheck,golint
 	Example_Remark                   []EventExampleRemark                  //nolint:stylecheck,golint
 	Nfts_DepositAsset                []EventNFTDeposited                   //nolint:stylecheck,golint
-	Council_Proposed                 []types.EventCollectiveProposed       //nolint:stylecheck,golint
-	Council_Voted                    []types.EventCollectiveVoted          //nolint:stylecheck,golint
-	Council_Approved                 []types.EventCollectiveApproved       //nolint:stylecheck,golint
-	Council_Disapproved              []types.EventCollectiveDisapproved    //nolint:stylecheck,golint
-	Council_Executed                 []types.EventCollectiveExecuted       //nolint:stylecheck,golint
-	Council_MemberExecuted           []types.EventCollectiveMemberExecuted //nolint:stylecheck,golint
-	Council_Closed                   []types.EventCollectiveClosed         //nolint:stylecheck,golint
+	Council_Proposed                 types.EventRecords				       //nolint:stylecheck,golint
+	Council_Voted                    types.EventRecords                    //nolint:stylecheck,golint
+	Council_Approved                 types.EventRecords                    //nolint:stylecheck,golint
+	Council_Disapproved              types.EventRecords                    //nolint:stylecheck,golint
+	Council_Executed                 types.EventRecords                    //nolint:stylecheck,golint
+	Council_MemberExecuted           types.EventRecords                    //nolint:stylecheck,golint
+	Council_Closed                   types.EventRecords                    //nolint:stylecheck,golint
 	Fees_FeeChanged                  []EventFeeChanged                     //nolint:stylecheck,golint
 	MultiAccount_NewMultiAccount     []EventNewMultiAccount                //nolint:stylecheck,golint
 	MultiAccount_MultiAccountUpdated []EventMultiAccountUpdated            //nolint:stylecheck,golint

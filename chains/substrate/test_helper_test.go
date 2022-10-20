@@ -11,7 +11,7 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/keystore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -30,9 +30,13 @@ var BobTestLogger = newTestLogger("Bob")
 var ThisChain msg.ChainId = 1
 var ForeignChain msg.ChainId = 2
 
+// todo: understand how to manage it
+var aliceAccountId, _ = types.NewAccountID(AliceKey.PublicKey)
+var bobAccountId, _ = types.NewAccountID(AliceKey.PublicKey) 
+
 var relayers = []types.AccountID{
-	types.NewAccountID(AliceKey.PublicKey),
-	types.NewAccountID(BobKey.PublicKey),
+	*aliceAccountId,
+	*bobAccountId,
 }
 
 var resources = map[msg.ResourceId]utils.Method{

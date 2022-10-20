@@ -15,7 +15,8 @@ import (
 	metrics "github.com/Cerebellum-Network/chainbridge-utils/metrics/types"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
 var _ core.Writer = &writer{}
@@ -112,7 +113,7 @@ func (w *writer) resolveResourceId(id [32]byte) (string, error) {
 // has not voted, it will return true. Otherwise, it will return false with a reason string.
 func (w *writer) proposalValid(prop *proposal) (bool, string, error) {
 	var voteRes voteState
-	srcId, err := types.EncodeToBytes(prop.sourceId)
+	srcId, err := codec.Encode(prop.sourceId)
 	if err != nil {
 		return false, "", err
 	}
@@ -128,8 +129,13 @@ func (w *writer) proposalValid(prop *proposal) (bool, string, error) {
 	if !exists {
 		return true, "", nil
 	} else if voteRes.Status.IsActive {
-		if containsVote(voteRes.VotesFor, types.NewAccountID(w.conn.key.PublicKey)) ||
-			containsVote(voteRes.VotesAgainst, types.NewAccountID(w.conn.key.PublicKey)) {
+		accountId, err := types.NewAccountID(w.conn.key.PublicKey)
+		if err != nil {
+			return false, "", err
+		}
+
+		if containsVote(voteRes.VotesFor, *accountId) ||
+			containsVote(voteRes.VotesAgainst, *accountId) {
 			return false, "already voted", nil
 		} else {
 			return true, "", nil

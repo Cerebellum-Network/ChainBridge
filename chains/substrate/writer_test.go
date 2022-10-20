@@ -8,7 +8,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
@@ -17,7 +18,7 @@ import (
 
 func assertProposalState(t *testing.T, conn *Connection, prop *proposal, votes *voteState, hasValue bool) {
 	var voteRes voteState
-	srcId, err := types.EncodeToBytes(prop.sourceId)
+	srcId, err := codec.Encode(prop.sourceId)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -41,12 +42,20 @@ func assertProposalState(t *testing.T, conn *Connection, prop *proposal, votes *
 }
 
 func Test_ContainsVote(t *testing.T) {
-	votes := []types.AccountID{types.NewAccountID(AliceKey.PublicKey)}
-	if !containsVote(votes, types.NewAccountID(AliceKey.PublicKey)) {
+	aliceAccountId, err := types.NewAccountID(AliceKey.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
+	votes := []types.AccountID{*aliceAccountId}
+	if !containsVote(votes, *aliceAccountId) {
 		t.Error("Voter has votes")
 	}
 
-	if containsVote(votes, types.NewAccountID(BobKey.PublicKey)) {
+	bobAccountId, err := types.NewAccountID(BobKey.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if containsVote(votes, *bobAccountId) {
 		t.Error("Voter has not voted")
 	}
 }
@@ -78,8 +87,12 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
+	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{types.NewAccountID(context.writerAlice.conn.key.PublicKey)},
+		VotesFor: []types.AccountID{*aliceAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -91,10 +104,14 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
+	bobAccountId, err := types.NewAccountID(context.writerBob.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			types.NewAccountID(context.writerAlice.conn.key.PublicKey),
-			types.NewAccountID(context.writerBob.conn.key.PublicKey),
+			*aliceAccountId,
+			*bobAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
@@ -140,8 +157,12 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
+	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{types.NewAccountID(context.writerAlice.conn.key.PublicKey)},
+		VotesFor: []types.AccountID{*aliceAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -153,17 +174,25 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
+	aliceAccountId, aliceErr := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
+	if aliceErr != nil {
+		t.Fatal(aliceErr)
+	}
+	bobAccountId, bobErr := types.NewAccountID(context.writerBob.conn.key.PublicKey)
+	if bobErr != nil {
+		t.Fatal(bobErr)
+	} 
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			types.NewAccountID(context.writerAlice.conn.key.PublicKey),
-			types.NewAccountID(context.writerBob.conn.key.PublicKey),
+			*aliceAccountId,
+			*bobAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, finalVoteState, true)
 
 	// Assert token exists
-	subtest.AssertOwnerOf(t, context.client, tokenId, types.NewAccountID(BobKey.PublicKey))
+	subtest.AssertOwnerOf(t, context.client, tokenId, *bobAccountId)
 
 	select {
 	case err = <-context.wSysErr:
@@ -198,8 +227,12 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
+	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{types.NewAccountID(context.writerAlice.conn.key.PublicKey)},
+		VotesFor: []types.AccountID{*aliceAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -211,10 +244,14 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
+	bobAccountId, err := types.NewAccountID(context.writerBob.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}	
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			types.NewAccountID(context.writerAlice.conn.key.PublicKey),
-			types.NewAccountID(context.writerBob.conn.key.PublicKey),
+			*aliceAccountId,
+			*bobAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
@@ -254,8 +291,12 @@ func TestWriter_ResolveMessage_Duplicate(t *testing.T) {
 	}
 
 	// Now check if the proposal exists on chain
+	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
+	if err != nil {
+		t.Fatal(err)
+	}
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{types.NewAccountID(context.writerAlice.conn.key.PublicKey)},
+		VotesFor: []types.AccountID{*aliceAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)

@@ -14,7 +14,7 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/keystore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 )
 
 const TestSubEndpoint = "ws://localhost:9944"
@@ -28,11 +28,14 @@ var BobKp = keystore.TestKeyRing.SubstrateKeys[keystore.BobKey]
 var CharlieKp = keystore.TestKeyRing.SubstrateKeys[keystore.CharlieKey]
 var DaveKp = keystore.TestKeyRing.SubstrateKeys[keystore.DaveKey]
 var EveKp = keystore.TestKeyRing.SubstrateKeys[keystore.EveKey]
+var bobAccountId, _ = types.NewAccountID(BobKp.AsKeyringPair().PublicKey)
+var charlieAccountId, _ = types.NewAccountID(CharlieKp.AsKeyringPair().PublicKey)
+var daveAccountId, _ = types.NewAccountID(DaveKp.AsKeyringPair().PublicKey)
 
 var RelayerSet = []types.AccountID{
-	types.NewAccountID(BobKp.AsKeyringPair().PublicKey),
-	types.NewAccountID(CharlieKp.AsKeyringPair().PublicKey),
-	types.NewAccountID(DaveKp.AsKeyringPair().PublicKey),
+	*bobAccountId,
+	*charlieAccountId,
+	*daveAccountId,
 }
 
 func CreateConfig(key string, chain msg.ChainId) *core.ChainConfig {

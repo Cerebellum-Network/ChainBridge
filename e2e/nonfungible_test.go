@@ -12,7 +12,7 @@ import (
 	ethtest "github.com/Cerebellum-Network/ChainBridge/shared/ethereum/testing"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 )
 
 func testErc721ToSubstrateRoundTrip(t *testing.T, ctx *testContext) {
@@ -41,7 +41,11 @@ func testErc721ToSubstrateRoundTrip(t *testing.T, ctx *testContext) {
 			nonce++
 
 			// Verify substrate ownership and metadata
-			subtest.AssertOwnerOf(t, ctx.subClient, tok.Id, types.NewAccountID(subRecipient))
+			subRecipientAccountId, err := types.NewAccountID(subRecipient)
+			if err != nil {
+				return
+			}	
+			subtest.AssertOwnerOf(t, ctx.subClient, tok.Id, *subRecipientAccountId)
 			subtest.AssertErc721Metadata(t, ctx.subClient, tok.Id, tok.Metadata[:])
 
 			// Verify token no longer exists on ethA
