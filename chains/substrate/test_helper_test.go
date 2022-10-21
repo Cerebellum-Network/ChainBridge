@@ -15,7 +15,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
-const TestEndpoint = "ws://127.0.0.1:9944"
+const TestEndpoint = "wss://ext-devs-node-3.cluster-3.cere.network:9945"
 
 const TestRelayerThreshold = 2
 const TestChainId = 1

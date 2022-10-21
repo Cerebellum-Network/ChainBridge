@@ -12,6 +12,7 @@ require (
 	github.com/prometheus/client_golang v1.4.1
 	github.com/stretchr/testify v1.7.0
 	github.com/urfave/cli/v2 v2.3.0
+	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871 // indirect
 )
 
 replace github.com/Cerebellum-Network/chainbridge-substrate-events => ../chainbridge-substrate-events
