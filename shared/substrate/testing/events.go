@@ -10,6 +10,7 @@ import (
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	"github.com/ChainSafe/log15"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
 var TestTimeout = time.Second * 15
@@ -32,7 +33,7 @@ func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 			t.Fatalf("Timed out waiting for proposal success/fail event")
 		case set := <-sub.Chan():
 			for _, chng := range set.Changes {
-				if !types.Eq(chng.StorageKey, key) || !chng.HasStorageData {
+				if !codec.Eq(chng.StorageKey, key) || !chng.HasStorageData {
 					// skip, we are only interested in events with content
 					continue
 				}

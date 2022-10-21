@@ -15,6 +15,8 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"golang.org/x/crypto/blake2b"
 )
 
 const TestSubEndpoint = "ws://localhost:9944"
@@ -71,7 +73,7 @@ func WaitForProposalSuccessOrFail(t *testing.T, client *utils.Client, nonce type
 			t.Fatalf("Timed out waiting for proposal success/fail event")
 		case set := <-sub.Chan():
 			for _, chng := range set.Changes {
-				if !types.Eq(chng.StorageKey, key) || !chng.HasStorageData {
+				if !codec.Eq(chng.StorageKey, key) || !chng.HasStorageData {
 					// skip, we are only interested in events with content
 					continue
 				}
@@ -106,8 +108,16 @@ func WaitForProposalSuccessOrFail(t *testing.T, client *utils.Client, nonce type
 	}
 }
 
+func GetHash(value interface{}) (types.Hash, error) {
+	enc, err := codec.Encode(value)
+	if err != nil {
+		return types.Hash{}, err
+	}
+	return blake2b.Sum256(enc), err
+}
+
 func HashInt(i int) types.Hash {
-	hash, err := types.GetHash(types.NewI64(int64(i)))
+	hash, err := GetHash(types.NewI64(int64(i)))
 	if err != nil {
 		panic(err)
 	}

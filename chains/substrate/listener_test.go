@@ -15,6 +15,7 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/blockstore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
 const ListenerTimeout = time.Second * 30
@@ -113,7 +114,7 @@ func Test_GenericTransferEvent(t *testing.T) {
 	// Construct our expected message
 	var rId msg.ResourceId
 	subtest.QueryConst(t, context.client, "Example", "HashId", &rId)
-	hashBz := types.MustHexDecodeString("0x16078eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f2")
+	hashBz := codec.MustHexDecodeString("0x16078eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f2")
 	hash := types.NewHash(hashBz)
 	context.latestOutNonce = context.latestOutNonce + 1
 	expected := msg.NewGenericTransfer(ThisChain, ForeignChain, context.latestOutNonce, rId, hash[:])
@@ -125,7 +126,7 @@ func Test_GenericTransferEvent(t *testing.T) {
 	// Repeat the process to assert nonce and hash change
 
 	// Construct our expected message
-	hashBz = types.MustHexDecodeString("0x16078eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f2")
+	hashBz = codec.MustHexDecodeString("0x16078eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f2")
 	hash = types.NewHash(hashBz)
 	context.latestOutNonce = context.latestOutNonce + 1
 	expected = msg.NewGenericTransfer(ThisChain, ForeignChain, context.latestOutNonce, rId, hash[:])
