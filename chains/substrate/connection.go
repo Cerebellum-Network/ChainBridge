@@ -14,7 +14,6 @@ import (
 	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc/author"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
 type Connection struct {
@@ -182,16 +181,8 @@ func (c *Connection) queryStorage(prefix, method string, arg1, arg2 []byte, resu
 
 // TODO: Add this to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
-	for _, mod := range meta.AsMetadataV12.Modules {
-		if string(mod.Name) == prefix {
-			for _, cons := range mod.Constants {
-				if string(cons.Name) == name {
-					return codec.Decode(cons.Value, res)
-				}
-			}
-		}
-	}
-	return fmt.Errorf("could not find constant %s.%s", prefix, name)
+	res, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
+	return err
 }
 
 func (c *Connection) getConst(prefix, name string, res interface{}) error {
