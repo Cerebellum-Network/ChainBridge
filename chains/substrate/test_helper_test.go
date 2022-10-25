@@ -15,7 +15,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
-const TestEndpoint = "wss://ext-devs-node-3.cluster-3.cere.network:9945"
+const TestEndpoint = "ws://127.0.0.1:9944"
 
 const TestRelayerThreshold = 2
 const TestChainId = 1
@@ -30,9 +30,8 @@ var BobTestLogger = newTestLogger("Bob")
 var ThisChain msg.ChainId = 1
 var ForeignChain msg.ChainId = 2
 
-// todo: understand how to manage it
 var aliceAccountId, _ = types.NewAccountID(AliceKey.PublicKey)
-var bobAccountId, _ = types.NewAccountID(AliceKey.PublicKey) 
+var bobAccountId, _ = types.NewAccountID(BobKey.PublicKey)
 
 var relayers = []types.AccountID{
 	*aliceAccountId,
@@ -70,16 +69,16 @@ func TestMain(m *testing.M) {
 
 	var nativeTokenId, hashId, nftTokenId []byte
 
-	err = utils.QueryConst(client, "Example", "NativeTokenId", &nativeTokenId)
+	err = utils.QueryConst(client, "Erc20", "NativeTokenId", &nativeTokenId)
 	if err != nil {
 		panic(err)
 	}
 
-	err = utils.QueryConst(client, "Example", "HashId", &hashId)
+	err = utils.QueryConst(client, "Erc20", "HashId", &hashId)
 	if err != nil {
 		panic(err)
 	}
-	err = utils.QueryConst(client, "Example", "Erc721Id", &nftTokenId)
+	err = utils.QueryConst(client, "Erc20", "Erc721Id", &nftTokenId)
 	if err != nil {
 		panic(err)
 	}

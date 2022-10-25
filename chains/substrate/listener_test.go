@@ -81,7 +81,7 @@ func compareMessage(expected, actual msg.Message) error {
 func Test_FungibleTransferEvent(t *testing.T) {
 	// Construct our expected message
 	var rId msg.ResourceId
-	subtest.QueryConst(t, context.client, "Example", "NativeTokenId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "NativeTokenId", &rId)
 	amount := big.NewInt(1000000)
 	recipient := BobKey.PublicKey
 	context.latestOutNonce = context.latestOutNonce + 1
@@ -100,7 +100,7 @@ func Test_NonFungibleTransferEvent(t *testing.T) {
 
 	// Construct our expected message
 	var rId msg.ResourceId
-	subtest.QueryConst(t, context.client, "Example", "Erc721Id", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "Erc721Id", &rId)
 	recipient := BobKey.PublicKey
 	context.latestOutNonce = context.latestOutNonce + 1
 	expected := msg.NewNonFungibleTransfer(ThisChain, ForeignChain, context.latestOutNonce, rId, tokenId, recipient, metadata)
@@ -113,7 +113,7 @@ func Test_NonFungibleTransferEvent(t *testing.T) {
 func Test_GenericTransferEvent(t *testing.T) {
 	// Construct our expected message
 	var rId msg.ResourceId
-	subtest.QueryConst(t, context.client, "Example", "HashId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "HashId", &rId)
 	hashBz := codec.MustHexDecodeString("0x16078eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f2")
 	hash := types.NewHash(hashBz)
 	context.latestOutNonce = context.latestOutNonce + 1

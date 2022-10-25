@@ -42,19 +42,11 @@ func assertProposalState(t *testing.T, conn *Connection, prop *proposal, votes *
 }
 
 func Test_ContainsVote(t *testing.T) {
-	aliceAccountId, err := types.NewAccountID(AliceKey.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
 	votes := []types.AccountID{*aliceAccountId}
 	if !containsVote(votes, *aliceAccountId) {
 		t.Error("Voter has votes")
 	}
 
-	bobAccountId, err := types.NewAccountID(BobKey.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
 	if containsVote(votes, *bobAccountId) {
 		t.Error("Voter has not voted")
 	}
@@ -67,7 +59,7 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "NativeTokenId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "NativeTokenId", &rId)
 	// Construct the message to initiate a vote
 	amount := big.NewInt(10000000)
 	m := message.NewFungibleTransfer(ForeignChain, ThisChain, 0, amount, rId, context.writerBob.conn.key.PublicKey)
@@ -87,12 +79,9 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
-	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
+	aliceWriterAccountId, _ := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{*aliceAccountId},
+		VotesFor: []types.AccountID{*aliceWriterAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -104,14 +93,11 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
-	bobAccountId, err := types.NewAccountID(context.writerBob.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
+	bobWriterAccountId, _ := types.NewAccountID(context.writerBob.conn.key.PublicKey)
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			*aliceAccountId,
-			*bobAccountId,
+			*aliceWriterAccountId,
+			*bobWriterAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
@@ -136,7 +122,7 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "Erc721Id", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "Erc721Id", &rId)
 	// Construct the message to initiate a vote
 	tokenId := big.NewInt(10000000)
 	context.latestInNonce++
@@ -157,12 +143,9 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
-	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
+	aliceWriterAccountId, _ := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{*aliceAccountId},
+		VotesFor: []types.AccountID{*aliceWriterAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -174,18 +157,11 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
-	aliceAccountId, aliceErr := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
-	if aliceErr != nil {
-		t.Fatal(aliceErr)
-	}
-	bobAccountId, bobErr := types.NewAccountID(context.writerBob.conn.key.PublicKey)
-	if bobErr != nil {
-		t.Fatal(bobErr)
-	} 
+	bobWriterAccountId, _ := types.NewAccountID(context.writerBob.conn.key.PublicKey)
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			*aliceAccountId,
-			*bobAccountId,
+			*aliceWriterAccountId,
+			*bobWriterAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
@@ -203,7 +179,7 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 
 func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "HashId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "HashId", &rId)
 	// Construct the message to initiate a vote
 	hash, err := types.NewHashFromHexString("0xcf5e09e29b01f123a9a0de6b128cdd178e2dad4d741ec027ec603075bcb234d4")
 	if err != nil {
@@ -227,12 +203,9 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	}
 
 	// Now check if the assetTxProposal exists on chain
-	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
+	aliceWriterAccountId, _ := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{*aliceAccountId},
+		VotesFor: []types.AccountID{*aliceWriterAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
@@ -244,14 +217,11 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	}
 
 	// Check the vote was added
-	bobAccountId, err := types.NewAccountID(context.writerBob.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}	
+	bobWriterAccountId, _ := types.NewAccountID(context.writerBob.conn.key.PublicKey)
 	finalVoteState := &voteState{
 		VotesFor: []types.AccountID{
-			*aliceAccountId,
-			*bobAccountId,
+			*aliceWriterAccountId,
+			*bobWriterAccountId,
 		},
 		Status: voteStatus{IsApproved: true},
 	}
@@ -270,7 +240,7 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 func TestWriter_ResolveMessage_Duplicate(t *testing.T) {
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "NativeTokenId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "NativeTokenId", &rId)
 	// Construct the message to initiate a vote
 	amount := big.NewInt(10000000)
 	context.latestInNonce++
@@ -291,12 +261,9 @@ func TestWriter_ResolveMessage_Duplicate(t *testing.T) {
 	}
 
 	// Now check if the proposal exists on chain
-	aliceAccountId, err := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
-	if err != nil {
-		t.Fatal(err)
-	}
+	aliceWriterAccountId, _ := types.NewAccountID(context.writerAlice.conn.key.PublicKey)
 	singleVoteState := &voteState{
-		VotesFor: []types.AccountID{*aliceAccountId},
+		VotesFor: []types.AccountID{*aliceWriterAccountId},
 		Status:   voteStatus{IsActive: true},
 	}
 	assertProposalState(t, context.writerAlice.conn, prop, singleVoteState, true)
