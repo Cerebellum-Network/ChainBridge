@@ -14,6 +14,7 @@ require (
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/urfave/cli/v2 v2.3.0
+	golang.org/x/crypto v0.1.0 // indirect
 )
 
 replace github.com/Cerebellum-Network/chainbridge-substrate-events => ../chainbridge-substrate-events
