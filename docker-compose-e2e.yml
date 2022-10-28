@@ -18,8 +18,6 @@ services:
   sub-chain:
     image: "cerebellumnetwork/pos-node:v2.29.0-rc1"
     container_name: sub-chain
-    volumes:
-      - ./chain-data:/data
     command: bash -c "/usr/local/bin/cere --dev --alice --ws-external --rpc-external"
     ports:
     - "9944:9944"
