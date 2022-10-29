@@ -9,10 +9,9 @@ import (
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v4"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	gsrpc "github.com/snowfork/go-substrate-rpc-client/v4"
+	"github.com/snowfork/go-substrate-rpc-client/v4/signature"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 // Client is a container for all the components required to submit extrinsics
@@ -142,16 +141,12 @@ func (c *Client) LatestBlock() (uint64, error) {
 
 func (c *Client) MintErc721(tokenId *big.Int, metadata []byte, recipient *signature.KeyringPair) error {
 	fmt.Printf("Mint info: account %x amount: %x meta: %x\n", recipient.PublicKey, types.NewU256(*tokenId), types.Bytes(metadata))
-	accountId, err := types.NewAccountID(recipient.PublicKey)
-	if err != nil {
-		return err
-	}	
-	return SubmitSudoTx(c, Erc721MintMethod, accountId, types.NewU256(*tokenId), types.Bytes(metadata))
+	return SubmitSudoTx(c, Erc721MintMethod, types.NewAccountID(recipient.PublicKey), types.NewU256(*tokenId), types.Bytes(metadata))
 }
 
 func (c *Client) OwnerOf(tokenId *big.Int) (types.AccountID, error) {
 	var owner types.AccountID
-	tokenIdBz, err := codec.Encode(types.NewU256(*tokenId))
+	tokenIdBz, err := types.EncodeToBytes(types.NewU256(*tokenId))
 	if err != nil {
 		return types.AccountID{}, err
 	}
@@ -168,7 +163,7 @@ func (c *Client) OwnerOf(tokenId *big.Int) (types.AccountID, error) {
 
 func (c *Client) GetDepositNonce(chain msg.ChainId) (uint64, error) {
 	var count types.U64
-	chainId, err := codec.Encode(types.U8(chain))
+	chainId, err := types.EncodeToBytes(types.U8(chain))
 	if err != nil {
 		return 0, err
 	}

@@ -10,11 +10,10 @@ import (
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v4"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/rpc/author"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	gsrpc "github.com/snowfork/go-substrate-rpc-client/v4"
+	"github.com/snowfork/go-substrate-rpc-client/v4/rpc/author"
+	"github.com/snowfork/go-substrate-rpc-client/v4/signature"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 type Connection struct {
@@ -183,7 +182,7 @@ func (c *Connection) queryStorage(prefix, method string, arg1, arg2 []byte, resu
 // TODO: Add this to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
 	consValue, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
-	codec.Decode(consValue, res)
+	types.DecodeFromBytes(consValue, res)
 	return err
 }
 

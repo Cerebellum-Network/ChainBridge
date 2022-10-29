@@ -7,8 +7,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, result interface{}) (bool, error) {
@@ -22,7 +21,7 @@ func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, resu
 // TODO: Add to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
 	consValue, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
-	codec.Decode(consValue, consValue)
+	types.DecodeFromBytes(consValue, consValue)
 	return err
 }
 
@@ -50,7 +49,7 @@ func BalanceOf(client *Client, publicKey []byte) (*big.Int, error) {
 
 func GetErc721Token(client *Client, id types.U256) (*Erc721Token, error) {
 	var res Erc721Token
-	tokenIdBz, err := codec.Encode(id)
+	tokenIdBz, err := types.EncodeToBytes(id)
 	if err != nil {
 		return nil, err
 	}

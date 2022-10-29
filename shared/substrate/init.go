@@ -5,7 +5,7 @@ package utils
 
 import (
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.ChainId, resources map[msg.ResourceId]Method, threshold uint32) error {
