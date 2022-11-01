@@ -189,13 +189,13 @@ type Events struct {
 	Erc721_Burned                    []EventErc721Burned                   //nolint:stylecheck,golint
 	Example_Remark                   []EventExampleRemark                  //nolint:stylecheck,golint
 	Nfts_DepositAsset                []EventNFTDeposited                   //nolint:stylecheck,golint
-	Council_Proposed                 types.EventRecords				       //nolint:stylecheck,golint
-	Council_Voted                    types.EventRecords                    //nolint:stylecheck,golint
-	Council_Approved                 types.EventRecords                    //nolint:stylecheck,golint
-	Council_Disapproved              types.EventRecords                    //nolint:stylecheck,golint
-	Council_Executed                 types.EventRecords                    //nolint:stylecheck,golint
-	Council_MemberExecuted           types.EventRecords                    //nolint:stylecheck,golint
-	Council_Closed                   types.EventRecords                    //nolint:stylecheck,golint
+	Council_Proposed                 []types.EventCouncilProposed		   //nolint:stylecheck,golint
+	Council_Voted                    []types.EventCouncilVoted             //nolint:stylecheck,golint
+	Council_Approved                 []types.EventCouncilApproved          //nolint:stylecheck,golint
+	Council_Disapproved              []types.EventCouncilDisapproved       //nolint:stylecheck,golint
+	Council_Executed                 []types.EventCouncilExecuted          //nolint:stylecheck,golint
+	Council_MemberExecuted           []types.EventCouncilMemberExecuted    //nolint:stylecheck,golint
+	Council_Closed                   []types.EventCouncilClosed            //nolint:stylecheck,golint
 	Fees_FeeChanged                  []EventFeeChanged                     //nolint:stylecheck,golint
 	MultiAccount_NewMultiAccount     []EventNewMultiAccount                //nolint:stylecheck,golint
 	MultiAccount_MultiAccountUpdated []EventMultiAccountUpdated            //nolint:stylecheck,golint
