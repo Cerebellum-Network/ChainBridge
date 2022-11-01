@@ -23,8 +23,8 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/core"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 const EthAChainId = msg.ChainId(0)
@@ -234,11 +234,11 @@ func Test_ThreeRelayers(t *testing.T) {
 
 	// First lookup the substrate resource IDs
 	var rawRId types.Bytes32
-	subtest.QueryConst(t, subClient, "Example", "NativeTokenId", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "NativeTokenId", &rawRId)
 	subErc20ResourceId := msg.ResourceIdFromSlice(rawRId[:])
-	subtest.QueryConst(t, subClient, "Example", "Erc721Id", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "Erc721Id", &rawRId)
 	subErc721ResourceId := msg.ResourceIdFromSlice(rawRId[:])
-	subtest.QueryConst(t, subClient, "Example", "HashId", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "HashId", &rawRId)
 	genericHashResourceId := msg.ResourceIdFromSlice(rawRId[:])
 
 	// Base setup for ethA

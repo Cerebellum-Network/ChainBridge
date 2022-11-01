@@ -7,8 +7,8 @@ import (
 	"math/big"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/scale"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/snowfork/go-substrate-rpc-client/v4/scale"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 type voteState struct {

@@ -11,8 +11,8 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/keystore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 )
 
 const TestEndpoint = "ws://127.0.0.1:9944"
@@ -66,16 +66,16 @@ func TestMain(m *testing.M) {
 
 	var nativeTokenId, hashId, nftTokenId []byte
 
-	err = utils.QueryConst(client, "Example", "NativeTokenId", &nativeTokenId)
+	err = utils.QueryConst(client, "Erc20", "NativeTokenId", &nativeTokenId)
 	if err != nil {
 		panic(err)
 	}
 
-	err = utils.QueryConst(client, "Example", "HashId", &hashId)
+	err = utils.QueryConst(client, "Erc20", "HashId", &hashId)
 	if err != nil {
 		panic(err)
 	}
-	err = utils.QueryConst(client, "Example", "Erc721Id", &nftTokenId)
+	err = utils.QueryConst(client, "Erc20", "Erc721Id", &nftTokenId)
 	if err != nil {
 		panic(err)
 	}
