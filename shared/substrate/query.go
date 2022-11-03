@@ -22,7 +22,7 @@ func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, resu
 // TODO: Add to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
 	consValue, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
-	codec.Decode(consValue, consValue)
+	codec.Decode(consValue, res)
 	return err
 }
 
