@@ -44,5 +44,16 @@ func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.Ch
 	}
 	calls = append(calls, call)
 
+	// Create a NewBalancesTransferCall call
+	amount := types.NewUCompactFromUInt(10000000000)
+	var rId msg.ResourceId
+	queryErr := QueryConst(client, "ChainBridge", "BridgeAccountId", &rId)
+	if queryErr != nil {
+		return queryErr
+	}	
+	multi, err := types.NewMultiAddressFromHexAccountID(rId.Hex())
+	nativeTransferCall, err := client.NewBalancesTransferCall(multi, amount)
+	calls = append(calls, nativeTransferCall)	
+	
 	return BatchSubmit(client, calls)
 }

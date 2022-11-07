@@ -118,3 +118,11 @@ func NewNativeTransferCall(t *testing.T, client *utils.Client, amount types.U128
 	}
 	return call
 }
+
+func NewBalancesTransferCall(t *testing.T, client *utils.Client, amount types.UCompact, recipient types.MultiAddress) types.Call {
+	call, err := client.NewBalancesTransferCall(recipient, amount)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return call
+}

@@ -130,6 +130,10 @@ func (c *Client) NewNativeTransferCall(amount types.U128, recipient []byte, dest
 	return types.NewCall(c.Meta, string(ExampleTransferNativeMethod), amount, recipient, types.U8(destId))
 }
 
+func (c *Client) NewBalancesTransferCall(recipient types.MultiAddress, amount types.UCompact) (types.Call, error) {
+	return types.NewCall(c.Meta, string(BalancesTransferMethod), recipient, amount)
+}
+
 // Utility methods
 
 func (c *Client) LatestBlock() (uint64, error) {
