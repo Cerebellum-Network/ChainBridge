@@ -29,7 +29,7 @@ type EventErc721Burned struct {
 	Topics  []types.Hash
 }
 
-type EventExampleRemark struct {
+type EventErc20Remark struct {
 	Phase  types.Phase
 	Hash   types.Hash
 	Topics []types.Hash
@@ -187,7 +187,7 @@ type Events struct {
 	Erc721_Minted                    []EventErc721Minted                   //nolint:stylecheck,golint
 	Erc721_Transferred               []EventErc721Transferred              //nolint:stylecheck,golint
 	Erc721_Burned                    []EventErc721Burned                   //nolint:stylecheck,golint
-	Example_Remark                   []EventExampleRemark                  //nolint:stylecheck,golint
+	Erc20_Remark                   	 []EventErc20Remark                  //nolint:stylecheck,golint
 	Nfts_DepositAsset                []EventNFTDeposited                   //nolint:stylecheck,golint
 	Council_Proposed                 []types.EventCouncilProposed		   //nolint:stylecheck,golint
 	Council_Voted                    []types.EventCouncilVoted             //nolint:stylecheck,golint

@@ -13,7 +13,7 @@ import (
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 )
 
-var TestTimeout = time.Second * 15
+var TestTimeout = time.Second * 30
 
 func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 	key, err := types.CreateStorageKey(client.Meta, "System", "Events", nil, nil)
@@ -45,7 +45,7 @@ func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 					t.Fatal(err)
 				}
 
-				for _, evt := range events.Example_Remark {
+				for _, evt := range events.Erc20_Remark {
 					if evt.Hash == hash {
 						log15.Info("Found matching Remark event", "hash", evt.Hash)
 						return
