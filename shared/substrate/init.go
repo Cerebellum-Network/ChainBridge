@@ -44,8 +44,8 @@ func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.Ch
 	}
 	calls = append(calls, call)
 
-	// Create a NewBalancesTransferCall call
-	amount := types.NewUCompactFromUInt(10000000000)
+	// Create a NewBalancesTransfer call
+	amount := types.NewUCompactFromUInt(10000000000000000)
 	var rId msg.ResourceId
 	queryErr := QueryConst(client, "ChainBridge", "BridgeAccountId", &rId)
 	if queryErr != nil {

@@ -37,7 +37,7 @@ var ethRecipient = SteveEthAddr
 var numberOfTxs = 5
 
 // Value per transaction
-var amountPerTest = types.NewU128(*big.NewInt(500))
+var amountPerTest = types.NewU128(*big.NewInt(100000000000))
 
 // Expected overall balance change for recipients
 var balanceDelta = big.NewInt(0).Mul(amountPerTest.Int, big.NewInt(int64(numberOfTxs)))
