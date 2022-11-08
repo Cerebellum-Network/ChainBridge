@@ -75,17 +75,17 @@ func (c *Client) RegisterResource(id msg.ResourceId, method string) error {
 
 func (c *Client) InitiateNativeTransfer(amount types.U128, recipient []byte, destId msg.ChainId) error {
 	log15.Info("Initiating Substrate native transfer", "amount", amount, "recipient", fmt.Sprintf("%x", recipient), "destId", destId)
-	return SubmitTx(c, ExampleTransferNativeMethod, amount, recipient, types.U8(destId))
+	return SubmitTx(c, Erc20TransferNativeMethod, amount, recipient, types.U8(destId))
 }
 
 func (c *Client) InitiateNonFungibleTransfer(tokenId types.U256, recipient []byte, destId msg.ChainId) error {
 	log15.Info("Initiating Substrate nft transfer", "tokenId", tokenId, "recipient", recipient, "destId", destId)
-	return SubmitTx(c, ExampleTransferErc721Method, recipient, tokenId, types.U8(destId))
+	return SubmitTx(c, Erc20TransferErc721Method, recipient, tokenId, types.U8(destId))
 }
 
 func (c *Client) InitiateHashTransfer(hash types.Hash, destId msg.ChainId) error {
 	log15.Info("Initiating hash transfer", "hash", hash.Hex())
-	return SubmitTx(c, ExampleTransferHashMethod, hash, types.U8(destId))
+	return SubmitTx(c, Erc20TransferHashMethod, hash, types.U8(destId))
 }
 
 // Call creation methods for batching
@@ -127,7 +127,7 @@ func (c *Client) NewRegisterResourceCall(id msg.ResourceId, method string) (type
 }
 
 func (c *Client) NewNativeTransferCall(amount types.U128, recipient []byte, destId msg.ChainId) (types.Call, error) {
-	return types.NewCall(c.Meta, string(ExampleTransferNativeMethod), amount, recipient, types.U8(destId))
+	return types.NewCall(c.Meta, string(Erc20TransferNativeMethod), amount, recipient, types.U8(destId))
 }
 
 func (c *Client) NewBalancesTransferCall(recipient types.MultiAddress, amount types.UCompact) (types.Call, error) {

@@ -270,9 +270,9 @@ func Test_ThreeRelayers(t *testing.T) {
 
 	// Setup substrate client, register resource, add relayers
 	resources := map[msg.ResourceId]subutils.Method{
-		subErc20ResourceId:    subutils.ExampleTransferMethod,
-		subErc721ResourceId:   subutils.ExampleMintErc721Method,
-		genericHashResourceId: subutils.ExampleRemarkMethod,
+		subErc20ResourceId:    subutils.Erc20TransferMethod,
+		subErc721ResourceId:   subutils.Erc20MintErc721Method,
+		genericHashResourceId: subutils.Erc20RemarkMethod,
 	}
 	subtest.EnsureInitializedChain(t, subClient, sub.RelayerSet, []msg.ChainId{EthAChainId}, resources, uint32(threshold))
 
