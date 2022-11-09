@@ -30,13 +30,13 @@ lint:
 	if [ ! -f ./bin/golangci-lint ]; then \
 		$(MAKE) get-lint; \
 	fi;
-	./bin/golangci-lint run ./... --timeout 5m0s
+	./bin/golangci-lint run  ./... --timeout 5m0s -v  
 
 lint-fix:
 	if [ ! -f ./bin/golangci-lint ]; then \
 		$(MAKE) get-lint; \
 	fi;
-	./bin/golangci-lint run ./... --timeout 5m0s --fix
+	./bin/golangci-lint run ./... --timeout 5m0s --fix -v
 
 build:
 	@echo "  >  \033[32mBuilding binary...\033[0m "
