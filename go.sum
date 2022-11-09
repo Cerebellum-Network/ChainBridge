@@ -60,6 +60,8 @@ github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758-34a979c525a2/go.mod h1:XYYsQDw9kK6KJeB2orKGrq0qmudOhFoGJL9seA88wEE=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221020170341-e0f6dbfa59f4 h1:gHCRFop+GHmKGR0O8nJGbw16x6ziJj+bEgsto5z8IhE=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221020170341-e0f6dbfa59f4/go.mod h1:Jrw2pw9SsMTPXfBWUUTlvsH6jzzG5kNUnwkYP/6h+S4=
+github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1 h1:HLs2wRPlFz21gwDfXW53nQyM68+SCrhTSysAEV47xmQ=
+github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1/go.mod h1:IT6FugJ81HYmZ313hHRLQ3OqsVx6vzZ67eXOqNt50PM=
 github.com/Cerebellum-Network/chainbridge-utils v1.1.0-cere h1:Hc2mbT6lEeDjglopH8xcKXLIV7TtJBcrxcDBEbMGz/M=
 github.com/Cerebellum-Network/chainbridge-utils v1.1.0-cere/go.mod h1:xzmPjGfeywPRIKXbyRb/gQHLVnLk2+w/k2zoZ3Ce/4I=
 github.com/Cerebellum-Network/go-substrate-rpc-client/v2 v2.0.2-cere h1:gq4EGk3xIWVqeTRj0LedVhW6LGYR98b0/5S3Q43RIBY=

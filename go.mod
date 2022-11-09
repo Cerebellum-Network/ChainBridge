@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758-34a979c525a2
-	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221020170341-e0f6dbfa59f4
+	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/aristanetworks/goarista v0.0.0-20200609010056-95bcf8053598 // indirect
 	github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.8
