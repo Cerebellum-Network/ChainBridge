@@ -12,7 +12,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 )
 
-//TestParseChainConfig tests parseChainConfig with all handlerContracts provided
+// TestParseChainConfig tests parseChainConfig with all handlerContracts provided
 func TestParseChainConfig(t *testing.T) {
 
 	input := core.ChainConfig{
@@ -65,7 +65,7 @@ func TestParseChainConfig(t *testing.T) {
 	}
 }
 
-//TestParseChainConfig tests parseChainConfig with all handlerContracts provided
+// TestParseChainConfig tests parseChainConfig with all handlerContracts provided
 func TestParseChainConfigWithNoBlockConfirmations(t *testing.T) {
 
 	input := core.ChainConfig{
@@ -117,7 +117,7 @@ func TestParseChainConfigWithNoBlockConfirmations(t *testing.T) {
 	}
 }
 
-//TestChainConfigOneContract Tests chain config providing only one contract
+// TestChainConfigOneContract Tests chain config providing only one contract
 func TestChainConfigOneContract(t *testing.T) {
 
 	input := core.ChainConfig{

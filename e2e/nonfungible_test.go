@@ -44,7 +44,7 @@ func testErc721ToSubstrateRoundTrip(t *testing.T, ctx *testContext) {
 			subRecipientAccountId, err := types.NewAccountID(subRecipient)
 			if err != nil {
 				return
-			}	
+			}
 			subtest.AssertOwnerOf(t, ctx.subClient, tok.Id, *subRecipientAccountId)
 			subtest.AssertErc721Metadata(t, ctx.subClient, tok.Id, tok.Metadata[:])
 

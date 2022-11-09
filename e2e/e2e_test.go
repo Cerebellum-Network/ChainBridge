@@ -217,12 +217,13 @@ func setupGenericTests(t *testing.T, ctx *testContext) {
 // This tests three relayers connected to three chains (2 ethereum, 1 substrate).
 //
 // EthA:
-//  - Native erc20 token
-// Eth B:
-//  - Synthetic erc20 token
-// Substrate:
-//  - Synthetic token (native to chain)
+//   - Native erc20 token
 //
+// Eth B:
+//   - Synthetic erc20 token
+//
+// Substrate:
+//   - Synthetic token (native to chain)
 func Test_ThreeRelayers(t *testing.T) {
 	shared.SetLogger(log.LvlTrace)
 	threshold := 3

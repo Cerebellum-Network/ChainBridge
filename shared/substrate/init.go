@@ -50,10 +50,16 @@ func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.Ch
 	queryErr := QueryConst(client, "ChainBridge", "BridgeAccountId", &rId)
 	if queryErr != nil {
 		return queryErr
-	}	
+	}
 	multi, err := types.NewMultiAddressFromHexAccountID(rId.Hex())
+	if err != nil {
+		return err
+	}
 	nativeTransferCall, err := client.NewBalancesTransferCall(multi, amount)
-	calls = append(calls, nativeTransferCall)	
-	
+	if err != nil {
+		return err
+	}
+	calls = append(calls, nativeTransferCall)
+
 	return BatchSubmit(client, calls)
 }

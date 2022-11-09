@@ -149,7 +149,7 @@ func (c *Client) MintErc721(tokenId *big.Int, metadata []byte, recipient *signat
 	accountId, err := types.NewAccountID(recipient.PublicKey)
 	if err != nil {
 		return err
-	}	
+	}
 	return SubmitSudoTx(c, Erc721MintMethod, accountId, types.NewU256(*tokenId), types.Bytes(metadata))
 }
 

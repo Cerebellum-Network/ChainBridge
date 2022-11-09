@@ -23,7 +23,7 @@ get:
 	go mod tidy && go mod download
 
 get-lint:
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.46.2
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.50.1
 
 .PHONY: lint
 lint:
