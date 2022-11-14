@@ -30,7 +30,7 @@ lint:
 	if [ ! -f ./bin/golangci-lint ]; then \
 		$(MAKE) get-lint; \
 	fi;
-	./bin/golangci-lint run  ./... --timeout 5m0s -v  
+	./bin/golangci-lint run ./... --timeout 5m0s -v
 
 lint-fix:
 	if [ ! -f ./bin/golangci-lint ]; then \
