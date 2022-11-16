@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-push-docker.yaml@master
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-push-docker.yaml@1.0.0
     with:
       runs-on: '["self-hosted", "cere-network-large-workers"]'
       org: cerebellumnetwork
@@ -21,7 +21,7 @@ jobs:
     secrets: inherit
 
   deploy:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-with-helm.yaml@master
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-with-helm.yaml@1.0.0
     needs: build
     with:
       runs-on: '["self-hosted", "cere-network-prd-deployer"]'
