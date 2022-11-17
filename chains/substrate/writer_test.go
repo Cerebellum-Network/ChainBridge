@@ -58,7 +58,7 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "NativeTokenId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "NativeTokenId", &rId)
 	// Construct the message to initiate a vote
 	amount := big.NewInt(10000000)
 	m := message.NewFungibleTransfer(ForeignChain, ThisChain, 0, amount, rId, context.writerBob.conn.key.PublicKey)
@@ -119,7 +119,7 @@ func TestWriter_ResolveMessage_FungibleProposal(t *testing.T) {
 func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "Erc721Id", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "Erc721Id", &rId)
 	// Construct the message to initiate a vote
 	tokenId := big.NewInt(10000000)
 	context.latestInNonce++
@@ -174,7 +174,7 @@ func TestWriter_ResolveMessage_NonFungibleProposal(t *testing.T) {
 
 func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "HashId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "HashId", &rId)
 	// Construct the message to initiate a vote
 	hash, err := types.NewHashFromHexString("0xcf5e09e29b01f123a9a0de6b128cdd178e2dad4d741ec027ec603075bcb234d4")
 	if err != nil {
@@ -233,7 +233,7 @@ func TestWriter_ResolveMessage_GenericProposal(t *testing.T) {
 func TestWriter_ResolveMessage_Duplicate(t *testing.T) {
 	// Setup message and params
 	var rId [32]byte
-	subtest.QueryConst(t, context.client, "Example", "NativeTokenId", &rId)
+	subtest.QueryConst(t, context.client, "Erc20", "NativeTokenId", &rId)
 	// Construct the message to initiate a vote
 	amount := big.NewInt(10000000)
 	context.latestInNonce++
