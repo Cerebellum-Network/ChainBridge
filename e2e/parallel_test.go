@@ -101,8 +101,6 @@ func testThreeChainsParallel(t *testing.T, ctx *testContext) {
 
 	// Calculate and verify expected results
 	t.Run("Assert Sub balance", func(t *testing.T) {
-		t.Skip("Skipped it until AccountInfo type will be fixed in the go-substrate-rpc-client repo")
-		// The GitHub issue link: https://github.com/centrifuge/go-substrate-rpc-client/issues/256
 		subtest.AssertBalanceOf(t, subClient, subRecipient, subRecipientBalance.Add(subRecipientBalance, balanceDelta))
 	})
 	t.Run("Assert EthA Sub balance", func(t *testing.T) {

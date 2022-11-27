@@ -14,6 +14,8 @@ require (
 	golang.org/x/crypto v0.1.0
 )
 
+replace github.com/centrifuge/go-substrate-rpc-client/v4 => github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.9-cere
+
 // This block was created automatically by "go mod tidy" command after I tried to fix it's "ambiguous import" error by adding "github.com/btcsuite/btcd/btcec" module
 require (
 	github.com/ChainSafe/go-schnorrkel v1.0.0 // indirect

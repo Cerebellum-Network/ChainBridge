@@ -57,6 +57,8 @@ github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758-34a979c525a2/go.mod h1:XYYsQDw9kK6KJeB2orKGrq0qmudOhFoGJL9seA88wEE=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1 h1:HLs2wRPlFz21gwDfXW53nQyM68+SCrhTSysAEV47xmQ=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1/go.mod h1:IT6FugJ81HYmZ313hHRLQ3OqsVx6vzZ67eXOqNt50PM=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.9-cere h1:3npr+FryWxCG+b8VZ9R9uMm64vBCYMpd0aTnHARe2M8=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.9-cere/go.mod h1:5g1oM4Zu3BOaLpsKQ+O8PAv2kNuq+kPcA1VzFbsSqxE=
 github.com/ChainSafe/go-schnorrkel v1.0.0 h1:3aDA67lAykLaG1y3AOjs88dMxC88PgUuHRrLeDnvGIM=
 github.com/ChainSafe/go-schnorrkel v1.0.0/go.mod h1:dpzHYVxLZcp8pjlV+O+UR8K0Hp/z7vcchBSbMBEhCw4=
 github.com/ChainSafe/log15 v1.0.0 h1:vRDVtWtVwIH5uSCBvgTTZh6FA58UBJ6+QiiypaZfBf8=
@@ -118,8 +120,6 @@ github.com/btcsuite/websocket v0.0.0-20150119174127-31079b680792/go.mod h1:ghJtE
 github.com/btcsuite/winsvc v1.0.0/go.mod h1:jsenWakMcC0zFBFurPLEAyrnc/teJEM1O46fmI40EZs=
 github.com/c-bata/go-prompt v0.2.2/go.mod h1:VzqtzE2ksDBcdln8G7mk2RX9QyGjH+OVqOCSiVIqS34=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
-github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.8 h1:gHLD5S81As9u5DbefLahw1enVO6OdBSS8gBI2R6KNEQ=
-github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.8/go.mod h1:5g1oM4Zu3BOaLpsKQ+O8PAv2kNuq+kPcA1VzFbsSqxE=
 github.com/cespare/cp v0.1.0 h1:SE+dxFebS7Iik5LK0tsi1k9ZCxEaFX4AjQmoyA+1dJk=
 github.com/cespare/cp v0.1.0/go.mod h1:SOGHArjBr4JWaSDEVpWpo/hNg6RoKrls6Oh40hiwW+s=
 github.com/cespare/xxhash v1.1.0/go.mod h1:XrSqR1VqqWfGrhpAt58auRo0WTKS1nRRg3ghfAqPWnc=

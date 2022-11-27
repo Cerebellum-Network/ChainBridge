@@ -106,8 +106,6 @@ func testErc20ToErc20(t *testing.T, ctx *testContext) {
 }
 
 func testErc20SubstrateRoundTrip(t *testing.T, ctx *testContext) {
-	t.Skip("Skipped it until AccountInfo type will be fixed in the go-substrate-rpc-client repo")
-	// The GitHub issue link: https://github.com/centrifuge/go-substrate-rpc-client/issues/256
 	// Transfer params
 	numberOfTxs := 5
 	subRecipient := sub.AliceKp.AsKeyringPair().PublicKey
