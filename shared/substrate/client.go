@@ -8,11 +8,11 @@ import (
 	"math/big"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/ChainSafe/log15"
 	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v4"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ChainSafe/log15"
 )
 
 // Client is a container for all the components required to submit extrinsics

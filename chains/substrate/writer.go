@@ -14,9 +14,9 @@ import (
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	metrics "github.com/Cerebellum-Network/chainbridge-utils/metrics/types"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/ChainSafe/log15"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ChainSafe/log15"
 )
 
 var _ core.Writer = &writer{}

@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/ChainSafe/log15"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/ChainSafe/log15"
 )
 
 func SubmitTx(client *Client, method Method, args ...interface{}) error {

@@ -8,9 +8,9 @@ import (
 	"time"
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
-	"github.com/ChainSafe/log15"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/ChainSafe/log15"
 )
 
 var TestTimeout = time.Second * 30
