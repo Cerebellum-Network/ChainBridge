@@ -12,7 +12,7 @@ import (
 	ethtest "github.com/Cerebellum-Network/ChainBridge/shared/ethereum/testing"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 )
 
 func testErc721ToSubstrateRoundTrip(t *testing.T, ctx *testContext) {

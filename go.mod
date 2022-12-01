@@ -3,10 +3,10 @@ module github.com/Cerebellum-Network/ChainBridge
 go 1.18
 
 require (
-	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221108180758-34a979c525a2
-	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221109121227-ed0b869efae1
+	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221201135328-b293e9eceda0
+	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221201134821-d1bef8924868
+	github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.10-cere.0.20221125132510-a26124f21c96
 	github.com/ChainSafe/log15 v1.0.0
-	github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.8
 	github.com/ethereum/go-ethereum v1.10.17
 	github.com/prometheus/client_golang v1.13.0
 	github.com/stretchr/testify v1.7.0
@@ -14,15 +14,11 @@ require (
 	golang.org/x/crypto v0.1.0
 )
 
-replace github.com/centrifuge/go-substrate-rpc-client/v4 => github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.9-cere
-
-// This block was created automatically by "go mod tidy" command after I tried to fix it's "ambiguous import" error by adding "github.com/btcsuite/btcd/btcec" module
 require (
 	github.com/ChainSafe/go-schnorrkel v1.0.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/btcsuite/btcd/btcec/v2 v2.1.2 // indirect
-	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1 // indirect
+	github.com/btcsuite/btcd/btcec/v2 v2.1.3 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cosmos/go-bip39 v1.0.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d // indirect
