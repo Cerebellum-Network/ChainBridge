@@ -5,7 +5,7 @@ package utils
 
 import (
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 )
 
 func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.ChainId, resources map[msg.ResourceId]Method, threshold uint32) error {
@@ -43,6 +43,23 @@ func InitializeChain(client *Client, relayers []types.AccountID, chains []msg.Ch
 		return err
 	}
 	calls = append(calls, call)
+
+	// Create a NewBalancesTransfer call
+	amount := types.NewUCompactFromUInt(10000000000000000)
+	var rId msg.ResourceId
+	queryErr := QueryConst(client, "ChainBridge", "BridgeAccountId", &rId)
+	if queryErr != nil {
+		return queryErr
+	}
+	multi, err := types.NewMultiAddressFromHexAccountID(rId.Hex())
+	if err != nil {
+		return err
+	}
+	nativeTransferCall, err := client.NewBalancesTransferCall(multi, amount)
+	if err != nil {
+		return err
+	}
+	calls = append(calls, nativeTransferCall)
 
 	return BatchSubmit(client, calls)
 }

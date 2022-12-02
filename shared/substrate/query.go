@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
 )
 
 func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, result interface{}) (bool, error) {
@@ -20,16 +21,11 @@ func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, resu
 
 // TODO: Add to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
-	for _, mod := range meta.AsMetadataV12.Modules {
-		if string(mod.Name) == prefix {
-			for _, cons := range mod.Constants {
-				if string(cons.Name) == name {
-					return types.DecodeFromBytes(cons.Value, res)
-				}
-			}
-		}
+	consValue, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
+	if err != nil {
+		return fmt.Errorf("could not find constant %s.%s", prefix, name)
 	}
-	return fmt.Errorf("could not find constant %s.%s", prefix, name)
+	return codec.Decode(consValue, res)
 }
 
 // QueryConst looks up a constant in the metadata
@@ -56,7 +52,7 @@ func BalanceOf(client *Client, publicKey []byte) (*big.Int, error) {
 
 func GetErc721Token(client *Client, id types.U256) (*Erc721Token, error) {
 	var res Erc721Token
-	tokenIdBz, err := types.EncodeToBytes(id)
+	tokenIdBz, err := codec.Encode(id)
 	if err != nil {
 		return nil, err
 	}

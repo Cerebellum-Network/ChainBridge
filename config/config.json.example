@@ -5,7 +5,7 @@
       "type": "ethereum",
       "id": "0",
       "endpoint": "https://rpc.goerli.mudit.blog",
-      "from": "0x9A9Dc7B059E9Add0D2d154A17139d8f2c4B38f6f",
+      "from": "0x19631d940Cc52CB5533eAbFa66bE139099410efE",
       "scan": true,
       "opts": {
         "bridge": "0xa806cA3bD88F790744462cBC34c40EDd5b8dc2Dd",

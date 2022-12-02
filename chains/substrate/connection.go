@@ -9,11 +9,12 @@ import (
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v4"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/rpc/author"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
 	"github.com/ChainSafe/log15"
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v2"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/rpc/author"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 )
 
 type Connection struct {
@@ -122,7 +123,7 @@ func (c *Connection) SubmitTx(method utils.Method, args ...interface{}) error {
 		Nonce:              types.NewUCompactFromUInt(uint64(c.nonce)),
 		SpecVersion:        rv.SpecVersion,
 		Tip:                types.NewUCompactFromUInt(0),
-		TransactionVersion: 1,
+		TransactionVersion: rv.TransactionVersion,
 	}
 
 	err = ext.Sign(*c.key, o)
@@ -181,16 +182,11 @@ func (c *Connection) queryStorage(prefix, method string, arg1, arg2 []byte, resu
 
 // TODO: Add this to GSRPC
 func getConst(meta *types.Metadata, prefix, name string, res interface{}) error {
-	for _, mod := range meta.AsMetadataV12.Modules {
-		if string(mod.Name) == prefix {
-			for _, cons := range mod.Constants {
-				if string(cons.Name) == name {
-					return types.DecodeFromBytes(cons.Value, res)
-				}
-			}
-		}
+	consValue, err := meta.AsMetadataV14.FindConstantValue(types.NewText(prefix), types.NewText(name))
+	if err != nil {
+		return fmt.Errorf("could not find constant %s.%s", prefix, name)
 	}
-	return fmt.Errorf("could not find constant %s.%s", prefix, name)
+	return codec.Decode(consValue, res)
 }
 
 func (c *Connection) getConst(prefix, name string, res interface{}) error {

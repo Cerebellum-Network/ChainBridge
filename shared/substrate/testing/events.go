@@ -8,11 +8,12 @@ import (
 	"time"
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 )
 
-var TestTimeout = time.Second * 15
+var TestTimeout = time.Second * 30
 
 func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 	key, err := types.CreateStorageKey(client.Meta, "System", "Events", nil, nil)
@@ -32,7 +33,7 @@ func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 			t.Fatalf("Timed out waiting for proposal success/fail event")
 		case set := <-sub.Chan():
 			for _, chng := range set.Changes {
-				if !types.Eq(chng.StorageKey, key) || !chng.HasStorageData {
+				if !codec.Eq(chng.StorageKey, key) || !chng.HasStorageData {
 					// skip, we are only interested in events with content
 					continue
 				}
@@ -44,7 +45,7 @@ func WaitForRemarkEvent(t *testing.T, client *utils.Client, hash types.Hash) {
 					t.Fatal(err)
 				}
 
-				for _, evt := range events.Example_Remark {
+				for _, evt := range events.Erc20_Remark {
 					if evt.Hash == hash {
 						log15.Info("Found matching Remark event", "hash", evt.Hash)
 						return

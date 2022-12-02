@@ -10,7 +10,8 @@
 # Release Notes
 
 ## vNext
-- ...
+- Added support of the Cere node v2.32.0
+- Updated `go-substrate-rpc-client` lib to v4.0.10-cere 
 
 ## v2.6.0
 - Fixed unit tests and linter

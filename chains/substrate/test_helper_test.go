@@ -10,8 +10,8 @@ import (
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	"github.com/Cerebellum-Network/chainbridge-utils/keystore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	"github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -30,16 +30,19 @@ var BobTestLogger = newTestLogger("Bob")
 var ThisChain msg.ChainId = 1
 var ForeignChain msg.ChainId = 2
 
+var aliceAccountId, _ = types.NewAccountID(AliceKey.PublicKey)
+var bobAccountId, _ = types.NewAccountID(BobKey.PublicKey)
+
 var relayers = []types.AccountID{
-	types.NewAccountID(AliceKey.PublicKey),
-	types.NewAccountID(BobKey.PublicKey),
+	*aliceAccountId,
+	*bobAccountId,
 }
 
 var resources = map[msg.ResourceId]utils.Method{
 	// These are taken from the Polkadot JS UI (Chain State -> Constants)
-	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000c76ebe4a02bbc34786d860b355f5a5ce00")): utils.ExampleTransferMethod,
-	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000e389d61c11e5fe32ec1735b3cd38c69501")): utils.ExampleMintErc721Method,
-	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000f44be64d2de895454c3467021928e55e01")): utils.ExampleRemarkMethod,
+	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000c76ebe4a02bbc34786d860b355f5a5ce00")): utils.Erc20TransferMethod,
+	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000e389d61c11e5fe32ec1735b3cd38c69501")): utils.Erc20MintErc721Method,
+	msg.ResourceIdFromSlice(hexutil.MustDecode("0x000000000000000000000000000000f44be64d2de895454c3467021928e55e01")): utils.Erc20RemarkMethod,
 }
 
 const relayerThreshold = 2
@@ -66,16 +69,16 @@ func TestMain(m *testing.M) {
 
 	var nativeTokenId, hashId, nftTokenId []byte
 
-	err = utils.QueryConst(client, "Example", "NativeTokenId", &nativeTokenId)
+	err = utils.QueryConst(client, "Erc20", "NativeTokenId", &nativeTokenId)
 	if err != nil {
 		panic(err)
 	}
 
-	err = utils.QueryConst(client, "Example", "HashId", &hashId)
+	err = utils.QueryConst(client, "Erc20", "HashId", &hashId)
 	if err != nil {
 		panic(err)
 	}
-	err = utils.QueryConst(client, "Example", "Erc721Id", &nftTokenId)
+	err = utils.QueryConst(client, "Erc20", "Erc721Id", &nftTokenId)
 	if err != nil {
 		panic(err)
 	}
@@ -93,8 +96,8 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		panic(err)
 	}
-	alice := NewWriter(aliceConn, AliceTestLogger, wSysErr, nil, true)
-	bob := NewWriter(bobConn, BobTestLogger, wSysErr, nil, true)
+	alice := NewWriter(aliceConn, AliceTestLogger, wSysErr, nil, false)
+	bob := NewWriter(bobConn, BobTestLogger, wSysErr, nil, false)
 	context = testContext{
 		client:         client,
 		listener:       l,

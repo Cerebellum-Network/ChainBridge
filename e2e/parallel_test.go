@@ -15,9 +15,9 @@ import (
 	subutils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -37,7 +37,7 @@ var ethRecipient = SteveEthAddr
 var numberOfTxs = 5
 
 // Value per transaction
-var amountPerTest = types.NewU128(*big.NewInt(500))
+var amountPerTest = types.NewU128(*big.NewInt(100000000000))
 
 // Expected overall balance change for recipients
 var balanceDelta = big.NewInt(0).Mul(amountPerTest.Int, big.NewInt(int64(numberOfTxs)))
