@@ -8,7 +8,7 @@ require (
 	github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.10-cere.0.20221125132510-a26124f21c96
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.10.17
-	github.com/prometheus/client_golang v1.13.0
+	github.com/prometheus/client_golang v1.14.0
 	github.com/stretchr/testify v1.7.0
 	github.com/urfave/cli/v2 v2.3.0
 	golang.org/x/crypto v0.1.0
@@ -40,7 +40,7 @@ require (
 	github.com/mimoo/StrobeGo v0.0.0-20210601165009-122bf33a46e0 // indirect
 	github.com/pierrec/xxHash v0.1.5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/prometheus/client_model v0.2.0 // indirect
+	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
