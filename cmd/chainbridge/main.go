@@ -237,6 +237,8 @@ func run(ctx *cli.Context) error {
 			for _, c := range c.Registry {
 				http.HandleFunc(fmt.Sprintf("/health/%s", c.Name()), h.HealthStatus)
 			}
+			// nolint
+			// ToDo: enable linter after fixint required timeouts vulnerability https://deepsource.io/directory/analyzers/go/issues/GO-S2114 
 			err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 			if errors.Is(err, http.ErrServerClosed) {
 				log.Info("Health status server is shutting down", err)

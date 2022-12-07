@@ -23,20 +23,20 @@ get:
 	go mod tidy && go mod download
 
 get-lint:
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.46.2
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.50.1
 
 .PHONY: lint
 lint:
 	if [ ! -f ./bin/golangci-lint ]; then \
 		$(MAKE) get-lint; \
 	fi;
-	./bin/golangci-lint run ./... --timeout 5m0s
+	./bin/golangci-lint run ./... --timeout 5m0s -v
 
 lint-fix:
 	if [ ! -f ./bin/golangci-lint ]; then \
 		$(MAKE) get-lint; \
 	fi;
-	./bin/golangci-lint run ./... --timeout 5m0s --fix
+	./bin/golangci-lint run ./... --timeout 5m0s --fix -v
 
 build:
 	@echo "  >  \033[32mBuilding binary...\033[0m "
@@ -77,7 +77,7 @@ install-subkey:
 ## Runs go test for all packages except the solidity bindings
 test:
 	@echo "  >  \033[32mRunning tests...\033[0m "
-	go test -p 1 -coverprofile=cover.out -v `go list ./... | grep -v bindings | grep -v e2e`
+	go test -p 1 -coverprofile=cover.out -v `go list ./... | grep -v bindings | grep -v e2e` --timeout 0
 
 test-e2e:
 	@echo "  >  \033[32mRunning e2e tests...\033[0m "

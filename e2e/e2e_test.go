@@ -22,8 +22,8 @@ import (
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	"github.com/Cerebellum-Network/chainbridge-utils/core"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -217,12 +217,13 @@ func setupGenericTests(t *testing.T, ctx *testContext) {
 // This tests three relayers connected to three chains (2 ethereum, 1 substrate).
 //
 // EthA:
-//  - Native erc20 token
-// Eth B:
-//  - Synthetic erc20 token
-// Substrate:
-//  - Synthetic token (native to chain)
+//   - Native erc20 token
 //
+// Eth B:
+//   - Synthetic erc20 token
+//
+// Substrate:
+//   - Synthetic token (native to chain)
 func Test_ThreeRelayers(t *testing.T) {
 	shared.SetLogger(log.LvlTrace)
 	threshold := 3
@@ -234,11 +235,11 @@ func Test_ThreeRelayers(t *testing.T) {
 
 	// First lookup the substrate resource IDs
 	var rawRId types.Bytes32
-	subtest.QueryConst(t, subClient, "Example", "NativeTokenId", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "NativeTokenId", &rawRId)
 	subErc20ResourceId := msg.ResourceIdFromSlice(rawRId[:])
-	subtest.QueryConst(t, subClient, "Example", "Erc721Id", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "Erc721Id", &rawRId)
 	subErc721ResourceId := msg.ResourceIdFromSlice(rawRId[:])
-	subtest.QueryConst(t, subClient, "Example", "HashId", &rawRId)
+	subtest.QueryConst(t, subClient, "Erc20", "HashId", &rawRId)
 	genericHashResourceId := msg.ResourceIdFromSlice(rawRId[:])
 
 	// Base setup for ethA
@@ -270,9 +271,9 @@ func Test_ThreeRelayers(t *testing.T) {
 
 	// Setup substrate client, register resource, add relayers
 	resources := map[msg.ResourceId]subutils.Method{
-		subErc20ResourceId:    subutils.ExampleTransferMethod,
-		subErc721ResourceId:   subutils.ExampleMintErc721Method,
-		genericHashResourceId: subutils.ExampleRemarkMethod,
+		subErc20ResourceId:    subutils.Erc20TransferMethod,
+		subErc721ResourceId:   subutils.Erc20MintErc721Method,
+		genericHashResourceId: subutils.Erc20RemarkMethod,
 	}
 	subtest.EnsureInitializedChain(t, subClient, sub.RelayerSet, []msg.ChainId{EthAChainId}, resources, uint32(threshold))
 

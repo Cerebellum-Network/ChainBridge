@@ -20,7 +20,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-//dataHandler is a struct which wraps any extra data our CMD functions need that cannot be passed through parameters
+// dataHandler is a struct which wraps any extra data our CMD functions need that cannot be passed through parameters
 type dataHandler struct {
 	datadir string
 }
@@ -142,7 +142,7 @@ func getDataDir(ctx *cli.Context) (string, error) {
 	return "", fmt.Errorf("datadir flag not supplied")
 }
 
-//importPrivKey imports a private key into a keypair
+// importPrivKey imports a private key into a keypair
 func importPrivKey(ctx *cli.Context, keytype, datadir, key string, password []byte) (string, error) {
 	if password == nil {
 		password = keystore.GetPassword("Enter password to encrypt keystore file:")
@@ -205,7 +205,7 @@ func importPrivKey(ctx *cli.Context, keytype, datadir, key string, password []by
 
 }
 
-//importEthKey takes an ethereum keystore and converts it to our keystore format
+// importEthKey takes an ethereum keystore and converts it to our keystore format
 func importEthKey(filename, datadir string, password, newPassword []byte) (string, error) {
 	keystorepath, err := keystoreDir(datadir)
 	if err != nil {

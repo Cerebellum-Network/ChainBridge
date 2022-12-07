@@ -8,10 +8,11 @@ import (
 	"math/big"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v4"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
 	"github.com/ChainSafe/log15"
-	gsrpc "github.com/centrifuge/go-substrate-rpc-client/v2"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 )
 
 // Client is a container for all the components required to submit extrinsics
@@ -74,17 +75,17 @@ func (c *Client) RegisterResource(id msg.ResourceId, method string) error {
 
 func (c *Client) InitiateNativeTransfer(amount types.U128, recipient []byte, destId msg.ChainId) error {
 	log15.Info("Initiating Substrate native transfer", "amount", amount, "recipient", fmt.Sprintf("%x", recipient), "destId", destId)
-	return SubmitTx(c, ExampleTransferNativeMethod, amount, recipient, types.U8(destId))
+	return SubmitTx(c, Erc20TransferNativeMethod, amount, recipient, types.U8(destId))
 }
 
 func (c *Client) InitiateNonFungibleTransfer(tokenId types.U256, recipient []byte, destId msg.ChainId) error {
 	log15.Info("Initiating Substrate nft transfer", "tokenId", tokenId, "recipient", recipient, "destId", destId)
-	return SubmitTx(c, ExampleTransferErc721Method, recipient, tokenId, types.U8(destId))
+	return SubmitTx(c, Erc20TransferErc721Method, recipient, tokenId, types.U8(destId))
 }
 
 func (c *Client) InitiateHashTransfer(hash types.Hash, destId msg.ChainId) error {
 	log15.Info("Initiating hash transfer", "hash", hash.Hex())
-	return SubmitTx(c, ExampleTransferHashMethod, hash, types.U8(destId))
+	return SubmitTx(c, Erc20TransferHashMethod, hash, types.U8(destId))
 }
 
 // Call creation methods for batching
@@ -126,7 +127,11 @@ func (c *Client) NewRegisterResourceCall(id msg.ResourceId, method string) (type
 }
 
 func (c *Client) NewNativeTransferCall(amount types.U128, recipient []byte, destId msg.ChainId) (types.Call, error) {
-	return types.NewCall(c.Meta, string(ExampleTransferNativeMethod), amount, recipient, types.U8(destId))
+	return types.NewCall(c.Meta, string(Erc20TransferNativeMethod), amount, recipient, types.U8(destId))
+}
+
+func (c *Client) NewBalancesTransferCall(recipient types.MultiAddress, amount types.UCompact) (types.Call, error) {
+	return types.NewCall(c.Meta, string(BalancesTransferMethod), recipient, amount)
 }
 
 // Utility methods
@@ -141,12 +146,16 @@ func (c *Client) LatestBlock() (uint64, error) {
 
 func (c *Client) MintErc721(tokenId *big.Int, metadata []byte, recipient *signature.KeyringPair) error {
 	fmt.Printf("Mint info: account %x amount: %x meta: %x\n", recipient.PublicKey, types.NewU256(*tokenId), types.Bytes(metadata))
-	return SubmitSudoTx(c, Erc721MintMethod, types.NewAccountID(recipient.PublicKey), types.NewU256(*tokenId), types.Bytes(metadata))
+	accountId, err := types.NewAccountID(recipient.PublicKey)
+	if err != nil {
+		return err
+	}
+	return SubmitSudoTx(c, Erc721MintMethod, accountId, types.NewU256(*tokenId), types.Bytes(metadata))
 }
 
 func (c *Client) OwnerOf(tokenId *big.Int) (types.AccountID, error) {
 	var owner types.AccountID
-	tokenIdBz, err := types.EncodeToBytes(types.NewU256(*tokenId))
+	tokenIdBz, err := codec.Encode(types.NewU256(*tokenId))
 	if err != nil {
 		return types.AccountID{}, err
 	}
@@ -163,7 +172,7 @@ func (c *Client) OwnerOf(tokenId *big.Int) (types.AccountID, error) {
 
 func (c *Client) GetDepositNonce(chain msg.ChainId) (uint64, error) {
 	var count types.U64
-	chainId, err := types.EncodeToBytes(types.U8(chain))
+	chainId, err := codec.Encode(types.U8(chain))
 	if err != nil {
 		return 0, err
 	}

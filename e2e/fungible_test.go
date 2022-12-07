@@ -13,8 +13,8 @@ import (
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/ethereum"
 	ethtest "github.com/Cerebellum-Network/ChainBridge/shared/ethereum/testing"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
 	log "github.com/ChainSafe/log15"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
 )
 
 func testErc20ToSubstrate(t *testing.T, ctx *testContext) {
@@ -151,7 +151,7 @@ func testErc20SubstrateRoundTrip(t *testing.T, ctx *testContext) {
 	// Repeat the process in the opposite direction
 	expectedEthBalance = ethtest.Erc20BalanceOf(t, ctx.ethA.Client, ctx.ethA.TestContracts.Erc20Sub, ethRecipient)
 	expectedSubBalance = subtest.BalanceOf(t, ctx.subClient, subRecipient)
-	feePerTx := big.NewInt(125000143)
+	feePerTx := big.NewInt(500000000) // the tx fee is fluent
 	nonce = subtest.GetDepositNonce(t, ctx.subClient, EthAChainId) + 1
 
 	log.Info("Asserted resulting balance", "owner", ethRecipient, "balance", expectedEthBalance.String())
@@ -175,7 +175,7 @@ func testErc20SubstrateRoundTrip(t *testing.T, ctx *testContext) {
 
 			expectedSubBalance.Sub(expectedSubBalance, amount.Int)
 			expectedSubBalance.Sub(expectedSubBalance, feePerTx)
-			subtest.AssertBalanceOf(t, ctx.subClient, subRecipient, expectedSubBalance)
+			subtest.AssertBalanceOfMore(t, ctx.subClient, subRecipient, expectedSubBalance) // workaround  to test fluent fee
 		})
 		if !ok {
 			return
