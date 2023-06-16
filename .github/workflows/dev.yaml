@@ -16,7 +16,7 @@ jobs:
   build:
     uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-to-ecr.yaml@master
     with:
-      runs-on: '["self-hosted", "cere-network-large-workers"]'
+      runs-on: '["self-hosted", "cere-network-large"]'
       environment: dev
       aws_account_id: ${{ vars.DEV_NETWORK_AWS_ACCOUNT_ID }}
       repository: network-relayer
