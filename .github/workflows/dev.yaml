@@ -12,7 +12,7 @@ jobs:
   build:
     uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-push-docker.yaml@1.0.0
     with:
-      runs-on: '["self-hosted", "cere-network-large-workers"]'
+      runs-on: '["self-hosted", "cere-network-large"]'
       org: cerebellumnetwork
       environment: dev
       image: crb-${{ github.event.repository.name }}
