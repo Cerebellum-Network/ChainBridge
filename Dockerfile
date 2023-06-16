@@ -8,7 +8,7 @@ RUN go mod download
 RUN cd cmd/chainbridge && go build -o /bridge .
 
 # # final stage
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 WORKDIR /app
 
