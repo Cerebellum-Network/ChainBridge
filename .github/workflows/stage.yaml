@@ -9,26 +9,17 @@ on:
       - 'hotfix/**'
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-push-docker.yaml@1.0.0
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-to-ecr.yaml@master
     with:
-      runs-on: '["self-hosted", "cere-network-large-workers"]'
-      org: cerebellumnetwork
-      environment: stage
-      image: crb-${{ github.event.repository.name }}
-      repository: crb-${{ github.event.repository.name }}
+      runs-on: '["self-hosted", "cere-network-large"]'
+      environment: stg
+      aws_account_id: ${{ vars.DEV_NETWORK_AWS_ACCOUNT_ID }}
+      repository: network-relayer
       file: ./Dockerfile
-    secrets: inherit
-
-  deploy:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-with-helm.yaml@1.0.0
-    needs: build
-    with:
-      runs-on: '["self-hosted", "cere-network-stg-deployer"]'
-      helm-repo-path: network/network-relayer
-      helm-release: network-relayer
-      namespace: network
-      tag: ${{ needs.build.outputs.version }}
-      environment: stage
     secrets: inherit
