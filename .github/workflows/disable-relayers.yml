@@ -16,7 +16,7 @@ jobs:
       - name: Set replicas to 0 for relayers
         run: |
           # Get a list of network-relayers
-          deployments=$(kubectl get deployment -n network | grep '^network-relayer-0' | awk '{print $1}')
+          deployments=$(kubectl get deployment -n network | grep '^network-relayer' | awk '{print $1}')
           
           # Iterate over the deployments and scale each one to 0 replicas
           for deployment in $deployments; do
