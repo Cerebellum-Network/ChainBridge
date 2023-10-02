@@ -15,4 +15,4 @@ jobs:
           version: ${{ secrets.KUBECTL_VERSION }}
       - name: Run kubectl get pods
         run: |
-          kubectl get pods
+          kubectl get pods -n network
