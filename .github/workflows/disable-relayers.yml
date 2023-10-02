@@ -1,0 +1,18 @@
+name: Disable Relayers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  kubectl-setup-and-run:
+    runs-on: '["self-hosted", "cere-network-prd-deployer"]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: ${{ secrets.KUBECTL_VERSION }}
+      - name: Run kubectl get pods
+        run: |
+          kubectl get pods
