@@ -10,7 +10,7 @@
 # Release Notes
 
 ## vNext
-- ...
+- Added workflows to disable and enable relayers.
 
 ## v2.7.0
 - Added support of the Cere node v2.32.0
