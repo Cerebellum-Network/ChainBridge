@@ -10,6 +10,8 @@
 # Release Notes
 
 ## vNext
+
+## v2.8.0
 - Added workflows to disable and enable relayers.
 
 ## v2.7.0
