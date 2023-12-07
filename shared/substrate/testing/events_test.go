@@ -9,8 +9,8 @@ import (
 
 	"github.com/Cerebellum-Network/ChainBridge/e2e/substrate"
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
-	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v4"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v5"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v5/types"
 )
 
 func TestChain_Events(t *testing.T) {

@@ -44,8 +44,8 @@ github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221201135328
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20221201135328-b293e9eceda0/go.mod h1:fZ95egyWaXKGMyof3dRibM/y4MouAC+L+9DdD/km8cw=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221201134821-d1bef8924868 h1:0Vbb5JVBtE4G5SqksaJ/UcF4FT2QbTHcHmkl4py40X8=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20221201134821-d1bef8924868/go.mod h1:tdRalIIfnSzu9UX0DkyzUcysg3U4DMXUBQrwTG2kU2c=
-github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.10-cere.0.20221125132510-a26124f21c96 h1:TW3Am+cgEGChz+GVaXfUhsocNLeILIzPLkZh8f8i4/E=
-github.com/Cerebellum-Network/go-substrate-rpc-client/v4 v4.0.10-cere.0.20221125132510-a26124f21c96/go.mod h1:a598oNr73JhT5UQH1DJ9IEAkl1M3yshnAsm7U2F7gjI=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v5 v4.0.10-cere.0.20221125132510-a26124f21c96 h1:TW3Am+cgEGChz+GVaXfUhsocNLeILIzPLkZh8f8i4/E=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v5 v4.0.10-cere.0.20221125132510-a26124f21c96/go.mod h1:a598oNr73JhT5UQH1DJ9IEAkl1M3yshnAsm7U2F7gjI=
 github.com/ChainSafe/go-schnorrkel v1.0.0 h1:3aDA67lAykLaG1y3AOjs88dMxC88PgUuHRrLeDnvGIM=
 github.com/ChainSafe/go-schnorrkel v1.0.0/go.mod h1:dpzHYVxLZcp8pjlV+O+UR8K0Hp/z7vcchBSbMBEhCw4=
 github.com/ChainSafe/log15 v1.0.0 h1:vRDVtWtVwIH5uSCBvgTTZh6FA58UBJ6+QiiypaZfBf8=
