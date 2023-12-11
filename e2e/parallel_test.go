@@ -15,8 +15,8 @@ import (
 	subutils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v5/signature"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v5/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
 	log "github.com/ChainSafe/log15"
 	"github.com/ethereum/go-ethereum/common"
 )

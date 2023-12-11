@@ -3,9 +3,9 @@ module github.com/Cerebellum-Network/ChainBridge
 go 1.18
 
 require (
-	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20231211120930-d4b3bce26dc4
-	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20231211120736-32591d4c2bde
-	github.com/Cerebellum-Network/go-substrate-rpc-client/v5 v5.0.0-cere
+	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20231211165630-993f26e9a035
+	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20231211165938-370a3dd1e56e
+	github.com/Cerebellum-Network/go-substrate-rpc-client/v6 v6.0.0
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.10.20
 	github.com/prometheus/client_golang v1.13.0
