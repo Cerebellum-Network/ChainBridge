@@ -114,6 +114,7 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 	w.log.Info("Submitting proposal transactions")
 	go w.watchThenExecute(m, data, dataHash, latestBlock)
 
+	w.log.Info("Submit vote on proposal")
 	w.voteProposal(m, dataHash)
 
 	return true
