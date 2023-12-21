@@ -92,6 +92,11 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 	data := ConstructErc20ProposalData(m.Payload[0].([]byte), m.Payload[1].([]byte))
 	dataHash := utils.Hash(append(w.cfg.erc20HandlerContract.Bytes(), data...))
 
+	// TODO: @MAKS
+	// We are going into this block and returning False from the second branch
+	// of the inner if-statement. This is because shouldVote is returning False and proposalIsPassed is returning False.
+	// GO TO LINE 38...
+	y // that's where the issue is.
 	if !w.shouldVote(m, dataHash) {
 		if w.proposalIsPassed(m.Source, m.DepositNonce, dataHash) {
 			// We should not vote for this proposal but it is ready to be executed
@@ -110,6 +115,8 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 		return false
 	}
 
+	// TODO: MAKS
+	// We don't reach this!
 	// watch for execution event
 	w.log.Info("Submitting proposal transactions")
 	go w.watchThenExecute(m, data, dataHash, latestBlock)
