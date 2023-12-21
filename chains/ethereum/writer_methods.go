@@ -98,6 +98,7 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 			w.executeProposal(m, data, dataHash)
 			return true
 		} else {
+			w.log.Info("Proposal did not pass yet.")
 			return false
 		}
 	}
@@ -110,6 +111,7 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 	}
 
 	// watch for execution event
+	w.log.Info("Submitting proposal transactions")
 	go w.watchThenExecute(m, data, dataHash, latestBlock)
 
 	w.voteProposal(m, dataHash)
