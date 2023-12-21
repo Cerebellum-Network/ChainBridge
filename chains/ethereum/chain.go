@@ -111,6 +111,10 @@ func InitializeChain(chainCfg *core.ChainConfig, logger log15.Logger, sysErr cha
 	if err != nil {
 		return nil, err
 	}
+	err = conn.LockAndUpdateOpts()
+	if err != nil {
+		return nil, err
+	}
 	err = conn.EnsureHasBytecode(cfg.bridgeContract)
 	if err != nil {
 		return nil, err
