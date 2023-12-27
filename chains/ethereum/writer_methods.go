@@ -6,7 +6,6 @@ package ethereum
 import (
 	"context"
 	"errors"
-	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"math/big"
 	"time"
@@ -33,8 +32,7 @@ var ErrFatalQuery = errors.New("query of chain state failed")
 // proposalIsComplete returns true if the proposal state is either Passed, Transferred or Cancelled
 func (w *writer) proposalIsComplete(srcId msg.ChainId, nonce msg.Nonce, dataHash [32]byte) bool {
 	prop, err := w.bridgeContract.GetProposal(w.conn.CallOpts(), uint8(srcId), uint64(nonce), dataHash)
-	w.log.Info("Proposal", "src", prop)
-	fmt.Println(prop)
+	w.log.Debug("Proposal", "src", prop)
 
 	if err != nil {
 		w.log.Error("Failed to check proposal existence", "err", err)
@@ -97,15 +95,10 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 	data := ConstructErc20ProposalData(m.Payload[0].([]byte), m.Payload[1].([]byte))
 	dataHash := utils.Hash(append(w.cfg.erc20HandlerContract.Bytes(), data...))
 
-	w.log.Info("Proposal Amount", "src", new(big.Int).SetBytes(m.Payload[0].([]byte)).String())
-	w.log.Info("Proposal Destination Address", "src", common.BytesToAddress(m.Payload[1].([]byte)))
-	w.log.Info("Proposal dataHash", "src", dataHash)
+	w.log.Debug("Proposal Amount", "src", new(big.Int).SetBytes(m.Payload[0].([]byte)).String())
+	w.log.Debug("Proposal Destination Address", "src", common.BytesToAddress(m.Payload[1].([]byte)))
+	w.log.Debug("Proposal DataHash", "src", dataHash)
 
-	// TODO: @MAKS
-	// We are going into this block and returning False from the second branch
-	// of the inner if-statement. This is because shouldVote is returning False and proposalIsPassed is returning False.
-	// GO TO LINE 38...
-	// that's where the issue is.
 	if !w.shouldVote(m, dataHash) {
 		if w.proposalIsPassed(m.Source, m.DepositNonce, dataHash) {
 			// We should not vote for this proposal but it is ready to be executed
@@ -124,9 +117,6 @@ func (w *writer) createErc20Proposal(m msg.Message) bool {
 		return false
 	}
 
-	// TODO: MAKS
-	// We don't reach this!
-	// watch for execution event
 	w.log.Info("Submitting proposal transactions")
 	go w.watchThenExecute(m, data, dataHash, latestBlock)
 
