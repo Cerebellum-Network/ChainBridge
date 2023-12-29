@@ -9,11 +9,11 @@ import (
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v4"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/rpc/author"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v6"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/rpc/author"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types/codec"
 	"github.com/ChainSafe/log15"
 )
 

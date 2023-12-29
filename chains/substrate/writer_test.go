@@ -8,8 +8,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types/codec"
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"

@@ -4,7 +4,7 @@
 package utils
 
 import (
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
 )
 
 const BridgePalletName = "ChainBridge"

@@ -7,9 +7,9 @@ import (
 	"math/big"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/scale"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/scale"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types/codec"
 )
 
 type voteState struct {
