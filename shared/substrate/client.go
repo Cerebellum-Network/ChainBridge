@@ -8,10 +8,10 @@ import (
 	"math/big"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v6"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/signature"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types/codec"
+	gsrpc "github.com/Cerebellum-Network/go-substrate-rpc-client/v7"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types/codec"
 	"github.com/ChainSafe/log15"
 )
 
