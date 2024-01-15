@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types/codec"
 )
 
 func QueryStorage(client *Client, prefix, method string, arg1, arg2 []byte, result interface{}) (bool, error) {
