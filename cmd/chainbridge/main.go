@@ -201,16 +201,15 @@ func run(ctx *cli.Context) error {
 			return errors.New("unrecognized Chain Type")
 		}
 
+		if err != nil {
+			return err
+		}
+
 		if chain.Scan {
 			c.AddChain(newChain)
 		} else {
 			c.SetRouter(newChain)
 		}
-
-		if err != nil {
-			return err
-		}
-
 	}
 
 	// Start prometheus and health server
@@ -238,7 +237,7 @@ func run(ctx *cli.Context) error {
 				http.HandleFunc(fmt.Sprintf("/health/%s", c.Name()), h.HealthStatus)
 			}
 			// nolint
-			// ToDo: enable linter after fixint required timeouts vulnerability https://deepsource.io/directory/analyzers/go/issues/GO-S2114 
+			// ToDo: enable linter after fixint required timeouts vulnerability https://deepsource.io/directory/analyzers/go/issues/GO-S2114
 			err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 			if errors.Is(err, http.ErrServerClosed) {
 				log.Info("Health status server is shutting down", err)
