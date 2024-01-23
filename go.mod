@@ -6,7 +6,7 @@ toolchain go1.21.5
 
 require (
 	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240112154231-4f2db1e7a3d9
-	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20240112163437-0f11d09acc2d
+	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20240123112715-6db113397ae7
 	github.com/Cerebellum-Network/go-substrate-rpc-client/v7 v7.0.1-rc
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.13.10
@@ -41,6 +41,7 @@ require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-stack/stack v1.8.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/google/renameio/v2 v2.0.0 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
 	github.com/gtank/merlin v0.1.1 // indirect
