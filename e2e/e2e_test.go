@@ -22,7 +22,7 @@ import (
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	"github.com/Cerebellum-Network/chainbridge-utils/core"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types"
 	log "github.com/ChainSafe/log15"
 	"github.com/ethereum/go-ethereum/common"
 )
