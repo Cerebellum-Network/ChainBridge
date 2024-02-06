@@ -367,6 +367,26 @@ type EventLeft struct {
 	Topics []types.Hash
 }
 
+// DDC Nodes events:
+
+type EventNodeCreated struct {
+	Phase      types.Phase
+	NodePubKey [32]byte
+	Topics     []types.Hash
+}
+
+type EventNodeDeleted struct {
+	Phase      types.Phase
+	NodePubKey [32]byte
+	Topics     []types.Hash
+}
+
+type EventNodeParamsChanged struct {
+	Phase      types.Phase
+	NodePubKey [32]byte
+	Topics     []types.Hash
+}
+
 type Events struct {
 	types.EventRecords
 	events.Events
@@ -423,4 +443,7 @@ type Events struct {
 	DdcStaking_Activated                   []EventActivated                   //nolint:stylecheck,golint
 	DdcStaking_LeaveSoon                   []EventLeaveSoon                   //nolint:stylecheck,golint
 	DdcStaking_Left                        []EventLeft                        //nolint:stylecheck,golint
+	DdcNodes_NodeCreated                   []EventNodeCreated                 //nolint:stylecheck,golint
+	DdcNodes_NodeDeleted                   []EventNodeDeleted                 //nolint:stylecheck,golint
+	DdcNodes_NodeParamsChanged             []EventNodeParamsChanged           //nolint:stylecheck,golint
 }
