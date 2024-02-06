@@ -181,36 +181,186 @@ type EventDataStringChanged struct {
 	Topics    []types.Hash
 }
 
+type EventBillingReportInitialized struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventChargingStarted struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventCharged struct {
+	Phase      types.Phase
+	ClusterId  types.H160
+	Era        types.U32
+	BatchIndex types.U32
+	CustomerId types.AccountID
+	Amount     types.U128
+	Topics     []types.Hash
+}
+
+type EventChargeFailed struct {
+	Phase            types.Phase
+	ClusterId        types.H160
+	Era              types.U32
+	BatchIndex       types.U32
+	CustomerId       types.AccountID
+	Charged          types.U128
+	ExpectedToCharge types.U128
+	Topics           []types.Hash
+}
+
+type EventIndebted struct {
+	Phase      types.Phase
+	ClusterId  types.H160
+	Era        types.U32
+	BatchIndex types.U32
+	CustomerId types.AccountID
+	Amount     types.U128
+	Topics     []types.Hash
+}
+
+type EventChargingFinished struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventTreasuryFeesCollected struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Amount    types.U128
+	Topics    []types.Hash
+}
+
+type EventClusterReserveFeesCollected struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Amount    types.U128
+	Topics    []types.Hash
+}
+
+type EventValidatorFeesCollected struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Amount    types.U128
+	Topics    []types.Hash
+}
+
+type EventRewardingStarted struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventRewarded struct {
+	Phase            types.Phase
+	ClusterId        types.H160
+	Era              types.U32
+	BatchIndex       types.U32
+	NodeProviderId   types.AccountID
+	Rewarded         types.U128
+	ExpectedToReward types.U128
+	Topics           []types.Hash
+}
+
+type EventNotDistributedReward struct {
+	Phase             types.Phase
+	ClusterId         types.H160
+	Era               types.U32
+	BatchIndex        types.U32
+	NodeProviderId    types.AccountID
+	ExpectedReward    types.U128
+	DistributedReward types.U128
+	Topics            []types.Hash
+}
+
+type EventNotDistributedOverallReward struct {
+	Phase                  types.Phase
+	ClusterId              types.H160
+	Era                    types.U32
+	ExpectedReward         types.U128
+	TotalDistributedReward types.U128
+	Topics                 []types.Hash
+}
+
+type EventRewardingFinished struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventBillingReportFinalized struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Era       types.U32
+	Topics    []types.Hash
+}
+
+type EventAuthorisedCaller struct {
+	Phase            types.Phase
+	AuthorisedCaller types.AccountID
+	Topics           []types.Hash
+}
+
 type Events struct {
 	types.EventRecords
 	events.Events
-	Erc721_Minted                    []EventErc721Minted                //nolint:stylecheck,golint
-	Erc721_Transferred               []EventErc721Transferred           //nolint:stylecheck,golint
-	Erc721_Burned                    []EventErc721Burned                //nolint:stylecheck,golint
-	Erc20_Remark                     []EventErc20Remark                 //nolint:stylecheck,golint
-	Nfts_DepositAsset                []EventNFTDeposited                //nolint:stylecheck,golint
-	Council_Proposed                 []types.EventCouncilProposed       //nolint:stylecheck,golint
-	Council_Voted                    []types.EventCouncilVoted          //nolint:stylecheck,golint
-	Council_Approved                 []types.EventCouncilApproved       //nolint:stylecheck,golint
-	Council_Disapproved              []types.EventCouncilDisapproved    //nolint:stylecheck,golint
-	Council_Executed                 []types.EventCouncilExecuted       //nolint:stylecheck,golint
-	Council_MemberExecuted           []types.EventCouncilMemberExecuted //nolint:stylecheck,golint
-	Council_Closed                   []types.EventCouncilClosed         //nolint:stylecheck,golint
-	Fees_FeeChanged                  []EventFeeChanged                  //nolint:stylecheck,golint
-	MultiAccount_NewMultiAccount     []EventNewMultiAccount             //nolint:stylecheck,golint
-	MultiAccount_MultiAccountUpdated []EventMultiAccountUpdated         //nolint:stylecheck,golint
-	MultiAccount_MultiAccountRemoved []EventMultiAccountRemoved         //nolint:stylecheck,golint
-	MultiAccount_NewMultisig         []EventNewMultisig                 //nolint:stylecheck,golint
-	MultiAccount_MultisigApproval    []EventMultisigApproval            //nolint:stylecheck,golint
-	MultiAccount_MultisigExecuted    []EventMultisigExecuted            //nolint:stylecheck,golint
-	MultiAccount_MultisigCancelled   []EventMultisigCancelled           //nolint:stylecheck,golint
-	TreasuryReward_TreasuryMinting   []EventTreasuryMinting             //nolint:stylecheck,golint
-	Nft_Transferred                  []EventNftTransferred              //nolint:stylecheck,golint
-	RadClaims_Claimed                []EventRadClaimsClaimed            //nolint:stylecheck,golint
-	RadClaims_RootHashStored         []EventRadClaimsRootHashStored     //nolint:stylecheck,golint
-	Registry_Mint                    []EventRegistryMint                //nolint:stylecheck,golint
-	Registry_RegistryCreated         []EventRegistryRegistryCreated     //nolint:stylecheck,golint
-	Registry_RegistryTmp             []EventRegistryTmp                 //nolint:stylecheck,golint
-	CereDDCModule_DataStringSet      []EventDataStringSet               //nolint:stylecheck,golint
-	CereDDCModule_DataStringChanged  []EventDataStringChanged           //nolint:stylecheck,golint
+	Erc721_Minted                          []EventErc721Minted                //nolint:stylecheck,golint
+	Erc721_Transferred                     []EventErc721Transferred           //nolint:stylecheck,golint
+	Erc721_Burned                          []EventErc721Burned                //nolint:stylecheck,golint
+	Erc20_Remark                           []EventErc20Remark                 //nolint:stylecheck,golint
+	Nfts_DepositAsset                      []EventNFTDeposited                //nolint:stylecheck,golint
+	Council_Proposed                       []types.EventCouncilProposed       //nolint:stylecheck,golint
+	Council_Voted                          []types.EventCouncilVoted          //nolint:stylecheck,golint
+	Council_Approved                       []types.EventCouncilApproved       //nolint:stylecheck,golint
+	Council_Disapproved                    []types.EventCouncilDisapproved    //nolint:stylecheck,golint
+	Council_Executed                       []types.EventCouncilExecuted       //nolint:stylecheck,golint
+	Council_MemberExecuted                 []types.EventCouncilMemberExecuted //nolint:stylecheck,golint
+	Council_Closed                         []types.EventCouncilClosed         //nolint:stylecheck,golint
+	Fees_FeeChanged                        []EventFeeChanged                  //nolint:stylecheck,golint
+	MultiAccount_NewMultiAccount           []EventNewMultiAccount             //nolint:stylecheck,golint
+	MultiAccount_MultiAccountUpdated       []EventMultiAccountUpdated         //nolint:stylecheck,golint
+	MultiAccount_MultiAccountRemoved       []EventMultiAccountRemoved         //nolint:stylecheck,golint
+	MultiAccount_NewMultisig               []EventNewMultisig                 //nolint:stylecheck,golint
+	MultiAccount_MultisigApproval          []EventMultisigApproval            //nolint:stylecheck,golint
+	MultiAccount_MultisigExecuted          []EventMultisigExecuted            //nolint:stylecheck,golint
+	MultiAccount_MultisigCancelled         []EventMultisigCancelled           //nolint:stylecheck,golint
+	TreasuryReward_TreasuryMinting         []EventTreasuryMinting             //nolint:stylecheck,golint
+	Nft_Transferred                        []EventNftTransferred              //nolint:stylecheck,golint
+	RadClaims_Claimed                      []EventRadClaimsClaimed            //nolint:stylecheck,golint
+	RadClaims_RootHashStored               []EventRadClaimsRootHashStored     //nolint:stylecheck,golint
+	Registry_Mint                          []EventRegistryMint                //nolint:stylecheck,golint
+	Registry_RegistryCreated               []EventRegistryRegistryCreated     //nolint:stylecheck,golint
+	Registry_RegistryTmp                   []EventRegistryTmp                 //nolint:stylecheck,golint
+	CereDDCModule_DataStringSet            []EventDataStringSet               //nolint:stylecheck,golint
+	CereDDCModule_DataStringChanged        []EventDataStringChanged           //nolint:stylecheck,golint
+	DdcPayouts_BillingReportInitialized    []EventBillingReportInitialized    //nolint:stylecheck,golint
+	DdcPayouts_ChargingStarted             []EventChargingStarted             //nolint:stylecheck,golint
+	DdcPayouts_Charged                     []EventCharged                     //nolint:stylecheck,golint
+	DdcPayouts_ChargedFailed               []EventChargeFailed                //nolint:stylecheck,golint
+	DdcPayouts_Indebted                    []EventIndebted                    //nolint:stylecheck,golint
+	DdcPayouts_ChargingFinished            []EventChargingFinished            //nolint:stylecheck,golint
+	DdcPayouts_TreasuryFeesCollected       []EventTreasuryFeesCollected       //nolint:stylecheck,golint
+	DdcPayouts_ClusterReserveFeesCollected []EventClusterReserveFeesCollected //nolint:stylecheck,golint
+	DdcPayouts_ValidatorFeesCollected      []EventValidatorFeesCollected      //nolint:stylecheck,golint
+	DdcPayouts_RewardingStarted            []EventRewardingStarted            //nolint:stylecheck,golint
+	DdcPayouts_Rewarded                    []EventRewarded                    //nolint:stylecheck,golint
+	DdcPayouts_NotDistributedReward        []EventNotDistributedReward        //nolint:stylecheck,golint
+	DdcPayouts_NotDistributedOverallReward []EventNotDistributedOverallReward //nolint:stylecheck,golint
+	DdcPayouts_RewardingFinished           []EventRewardingFinished           //nolint:stylecheck,golint
+	DdcPayouts_BillingReportFinalized      []EventBillingReportFinalized      //nolint:stylecheck,golint
+	DdcPayouts_AuthorisedCaller            []EventAuthorisedCaller            //nolint:stylecheck,golint
 }
