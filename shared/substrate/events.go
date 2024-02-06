@@ -181,6 +181,8 @@ type EventDataStringChanged struct {
 	Topics    []types.Hash
 }
 
+// DDC Payouts events:
+
 type EventBillingReportInitialized struct {
 	Phase     types.Phase
 	ClusterId types.H160
@@ -310,6 +312,61 @@ type EventAuthorisedCaller struct {
 	Topics           []types.Hash
 }
 
+// DDC Staking events:
+
+type EventBonded struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventUnbonded struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventWithdrawn struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventChilled struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Topics []types.Hash
+}
+
+type EventChillSoon struct {
+	Phase       types.Phase
+	Who         types.AccountID
+	ClusterId   types.H160
+	BlockNumber types.BlockNumber
+	Topics      []types.Hash
+}
+
+type EventActivated struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Topics []types.Hash
+}
+
+type EventLeaveSoon struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Topics []types.Hash
+}
+
+type EventLeft struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Topics []types.Hash
+}
+
 type Events struct {
 	types.EventRecords
 	events.Events
@@ -358,4 +415,12 @@ type Events struct {
 	DdcPayouts_RewardingFinished           []EventRewardingFinished           //nolint:stylecheck,golint
 	DdcPayouts_BillingReportFinalized      []EventBillingReportFinalized      //nolint:stylecheck,golint
 	DdcPayouts_AuthorisedCaller            []EventAuthorisedCaller            //nolint:stylecheck,golint
+	DdcStaking_Bonded                      []EventBonded                      //nolint:stylecheck,golint
+	DdcStaking_Unbonded                    []EventUnbonded                    //nolint:stylecheck,golint
+	DdcStaking_Withdrawn                   []EventWithdrawn                   //nolint:stylecheck,golint
+	DdcStaking_Chilled                     []EventChilled                     //nolint:stylecheck,golint
+	DdcStaking_ChillSoon                   []EventChillSoon                   //nolint:stylecheck,golint
+	DdcStaking_Activated                   []EventActivated                   //nolint:stylecheck,golint
+	DdcStaking_LeaveSoon                   []EventLeaveSoon                   //nolint:stylecheck,golint
+	DdcStaking_Left                        []EventLeft                        //nolint:stylecheck,golint
 }
