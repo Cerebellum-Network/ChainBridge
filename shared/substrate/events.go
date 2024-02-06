@@ -387,6 +387,82 @@ type EventNodeParamsChanged struct {
 	Topics     []types.Hash
 }
 
+// DDC Clusters events:
+
+type EventClusterCreated struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Topics    []types.Hash
+}
+
+type EventClusterNodeAdded struct {
+	Phase      types.Phase
+	ClusterId  types.H160
+	NodePubKey [32]byte
+	Topics     []types.Hash
+}
+
+type EventClusterNodeRemoved struct {
+	Phase      types.Phase
+	ClusterId  types.H160
+	NodePubKey [32]byte
+	Topics     []types.Hash
+}
+
+type EventClusterParamsSet struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Topics    []types.Hash
+}
+
+type EventClusterGovParamsSet struct {
+	Phase     types.Phase
+	ClusterId types.H160
+	Topics    []types.Hash
+}
+
+// DDC Customers events:
+
+type EventDeposited struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventInitialDepositUnlock struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventCustomersWithdrawn struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventCustomersCharged struct {
+	Phase  types.Phase
+	Who    types.AccountID
+	Amount types.U128
+	Topics []types.Hash
+}
+
+type EventBucketCreated struct {
+	Phase    types.Phase
+	BucketId types.U64
+	Topics   []types.Hash
+}
+
+type EventBucketUpdated struct {
+	Phase    types.Phase
+	BucketId types.U64
+	Topics   []types.Hash
+}
+
 type Events struct {
 	types.EventRecords
 	events.Events
@@ -446,4 +522,15 @@ type Events struct {
 	DdcNodes_NodeCreated                   []EventNodeCreated                 //nolint:stylecheck,golint
 	DdcNodes_NodeDeleted                   []EventNodeDeleted                 //nolint:stylecheck,golint
 	DdcNodes_NodeParamsChanged             []EventNodeParamsChanged           //nolint:stylecheck,golint
+	DdcClusters_ClusterCreated             []EventClusterCreated              //nolint:stylecheck,golint
+	DdcClusters_ClusterNodeAdded           []EventClusterNodeAdded            //nolint:stylecheck,golint
+	DdcClusters_ClusterNodeRemoved         []EventClusterNodeRemoved          //nolint:stylecheck,golint
+	DdcClusters_ClusterParamsSet           []EventClusterParamsSet            //nolint:stylecheck,golint
+	DdcClusters_EventClusterGovParamsSet   []EventClusterGovParamsSet         //nolint:stylecheck,golint
+	DdcCustomers_Deposited                 []EventDeposited                   //nolint:stylecheck,golint
+	DdcCustomers_InitialDepositUnlock      []EventInitialDepositUnlock        //nolint:stylecheck,golint
+	DdcCustomers_Withdrawn                 []EventCustomersWithdrawn          //nolint:stylecheck,golint
+	DdcCustomers_Charged                   []EventCustomersCharged            //nolint:stylecheck,golint
+	DdcCustomers_BucketCreated             []EventBucketCreated               //nolint:stylecheck,golint
+	DdcCustomers_BucketUpdated             []EventBucketUpdated               //nolint:stylecheck,golint
 }
