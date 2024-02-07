@@ -57,6 +57,8 @@ github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240112154231
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240112154231-4f2db1e7a3d9/go.mod h1:a8Bhm44mzr1b4tGwPbpISsGymroqjLs32UvQrjJT3k0=
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240205145248-91ef5604e469 h1:YLLljigl3FoZgO78MdRdQ6BnBPd3w+YwgumpsfnJ9FQ=
 github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240205145248-91ef5604e469/go.mod h1:nFWpnpirwK/0+jE0efOVg9qZpSPnk3UidR/W4lCP9d4=
+github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240207110321-e3fe6ef7286d h1:RVM8eeEMhNXud8I/pJjexOXg/umm2Uk/+eIjp+5gT2A=
+github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240207110321-e3fe6ef7286d/go.mod h1:nFWpnpirwK/0+jE0efOVg9qZpSPnk3UidR/W4lCP9d4=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20231212171702-a0793ff00378 h1:C690sCJMOXV41f1b1nP48ypz/cGY4Yp9MKyKb7A4/4g=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20231212171702-a0793ff00378/go.mod h1:D5o++aho1srs5AmENhtBhbD6JGKEqIVoGtKgSeipd8s=
 github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20240112163437-0f11d09acc2d h1:KnNrLMmqyVLMgNMgSp2cIBsJLUnC2vVyUgq9sEZUND0=

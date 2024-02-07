@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.5
 
 require (
-	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240205145248-91ef5604e469
+	github.com/Cerebellum-Network/chainbridge-substrate-events v0.0.0-20240207110321-e3fe6ef7286d
 	github.com/Cerebellum-Network/chainbridge-utils v1.0.7-0.20240205092257-877ee052801b
 	github.com/Cerebellum-Network/go-substrate-rpc-client/v8 v8.0.4-rc
 	github.com/ChainSafe/log15 v1.0.0
