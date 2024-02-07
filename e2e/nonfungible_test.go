@@ -11,7 +11,7 @@ import (
 	sub "github.com/Cerebellum-Network/ChainBridge/e2e/substrate"
 	ethtest "github.com/Cerebellum-Network/ChainBridge/shared/ethereum/testing"
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types"
 	log "github.com/ChainSafe/log15"
 )
 
