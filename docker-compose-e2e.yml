@@ -16,7 +16,7 @@ services:
     - "8546:8545"
 
   sub-chain:
-    image: "cerebellumnetwork/pos-node:v2.32.0-rc1"
+    image: "cerebellumnetwork/pos-node:v4.8.2"
     container_name: sub-chain
     command: bash -c "/usr/local/bin/cere --dev --alice --ws-external --rpc-external"
     ports:

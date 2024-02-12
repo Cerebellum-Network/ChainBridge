@@ -1,0 +1,25 @@
+name: Enable Relayers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  enable-relayers:
+    runs-on: [ "self-hosted", "cere-network-prd-deployer" ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: ${{ secrets.KUBECTL_VERSION }}
+      - name: Set replicas to 1 for relayers
+        run: |
+          # Get a list of network-relayers
+          deployments=$(kubectl get deployment -n network | grep '^network-relayer' | awk '{print $1}')
+          
+          # Iterate over the deployments and scale each one to 1 replicas
+          for deployment in $deployments; do
+            kubectl scale deployment -n network --replicas=1 $deployment
+          done
+

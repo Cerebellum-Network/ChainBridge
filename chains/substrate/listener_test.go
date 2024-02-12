@@ -14,8 +14,8 @@ import (
 	subtest "github.com/Cerebellum-Network/ChainBridge/shared/substrate/testing"
 	"github.com/Cerebellum-Network/chainbridge-utils/blockstore"
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types/codec"
 )
 
 const ListenerTimeout = time.Second * 30

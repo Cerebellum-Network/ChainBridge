@@ -1,0 +1,25 @@
+name: Disable Relayers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  disable-relayers:
+    runs-on: [ "self-hosted", "cere-network-prd-deployer" ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: ${{ secrets.KUBECTL_VERSION }}
+      - name: Set replicas to 0 for relayers
+        run: |
+          # Get a list of network-relayers
+          deployments=$(kubectl get deployment -n network | grep '^network-relayer' | awk '{print $1}')
+          
+          # Iterate over the deployments and scale each one to 0 replicas
+          for deployment in $deployments; do
+            kubectl scale deployment -n network --replicas=0 $deployment
+          done
+
