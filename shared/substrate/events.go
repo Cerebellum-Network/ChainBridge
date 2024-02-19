@@ -270,6 +270,7 @@ type EventRewarded struct {
 	ClusterId      types.H160
 	Era            types.U32
 	NodeProviderId types.AccountID
+	Amount         types.U128
 	Topics         []types.Hash
 }
 
