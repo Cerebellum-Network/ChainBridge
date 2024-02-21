@@ -208,13 +208,14 @@ type EventCharged struct {
 }
 
 type EventChargeFailed struct {
-	Phase      types.Phase
-	ClusterId  types.H160
-	Era        types.U32
-	BatchIndex types.U32
-	CustomerId types.AccountID
-	Amount     types.U128
-	Topics     []types.Hash
+	Phase            types.Phase
+	ClusterId        types.H160
+	Era              types.U32
+	BatchIndex       types.U32
+	CustomerId       types.AccountID
+	Charged          types.U128
+	ExpectedToCharge types.U128
+	Topics           []types.Hash
 }
 
 type EventIndebted struct {
@@ -266,17 +267,21 @@ type EventRewardingStarted struct {
 }
 
 type EventRewarded struct {
-	Phase          types.Phase
-	ClusterId      types.H160
-	Era            types.U32
-	NodeProviderId types.AccountID
-	Amount         types.U128
-	Topics         []types.Hash
+	Phase            types.Phase
+	ClusterId        types.H160
+	BatchIndex       types.U16
+	Era              types.U32
+	NodeProviderId   types.AccountID
+	Rewarded         types.U128
+	ExpectedToReward types.U128
+	Amount           types.U128
+	Topics           []types.Hash
 }
 
 type EventNotDistributedReward struct {
 	Phase             types.Phase
 	ClusterId         types.H160
+	BatchIndex        types.U16
 	Era               types.U32
 	NodeProviderId    types.AccountID
 	ExpectedReward    types.U128
@@ -446,10 +451,11 @@ type EventCustomersWithdrawn struct {
 }
 
 type EventCustomersCharged struct {
-	Phase  types.Phase
-	Who    types.AccountID
-	Amount types.U128
-	Topics []types.Hash
+	Phase            types.Phase
+	Who              types.AccountID
+	Amount           types.U128
+	ExpectedToCharge types.U128
+	Topics           []types.Hash
 }
 
 type EventBucketCreated struct {
