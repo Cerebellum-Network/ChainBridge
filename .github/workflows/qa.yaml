@@ -18,7 +18,7 @@ jobs:
     with:
       runs-on: '["self-hosted", "cere-network-large"]'
       environment: qa
-      aws_account_id: ${{ vars.QA_NETWORK_AWS_ACCOUNT_ID }}
+      aws_account_id: ${{ vars.DEV_NETWORK_AWS_ACCOUNT_ID }}
       repository: network-relayer
       file: ./Dockerfile
     secrets: inherit
