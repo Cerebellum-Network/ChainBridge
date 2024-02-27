@@ -208,13 +208,14 @@ type EventCharged struct {
 }
 
 type EventChargeFailed struct {
-	Phase      types.Phase
-	ClusterId  types.H160
-	Era        types.U32
-	BatchIndex types.U32
-	CustomerId types.AccountID
-	Amount     types.U128
-	Topics     []types.Hash
+	Phase            types.Phase
+	ClusterId        types.H160
+	Era              types.U32
+	BatchIndex       types.U32
+	CustomerId       types.AccountID
+	Charged          types.U128
+	ExpectedToCharge types.U128
+	Topics           []types.Hash
 }
 
 type EventIndebted struct {
@@ -266,18 +267,21 @@ type EventRewardingStarted struct {
 }
 
 type EventRewarded struct {
-	Phase          types.Phase
-	ClusterId      types.H160
-	Era            types.U32
-	NodeProviderId types.AccountID
-	Amount         types.U128
-	Topics         []types.Hash
+	Phase            types.Phase
+	ClusterId        types.H160
+	Era              types.U32
+	BatchIndex       types.U32
+	NodeProviderId   types.AccountID
+	Rewarded         types.U128
+	ExpectedToReward types.U128
+	Topics           []types.Hash
 }
 
 type EventNotDistributedReward struct {
 	Phase             types.Phase
 	ClusterId         types.H160
 	Era               types.U32
+	BatchIndex        types.U32
 	NodeProviderId    types.AccountID
 	ExpectedReward    types.U128
 	DistributedReward types.U128
@@ -311,6 +315,17 @@ type EventAuthorisedCaller struct {
 	Phase            types.Phase
 	AuthorisedCaller types.AccountID
 	Topics           []types.Hash
+}
+
+type EventChargeError struct {
+	Phase      types.Phase
+	ClusterId  types.H160
+	Era        types.U32
+	BatchIndex types.U32
+	CustomerId types.AccountID
+	Amount     types.U128
+	Error      types.DispatchError
+	Topics     []types.Hash
 }
 
 // DDC Staking events:
@@ -425,31 +440,32 @@ type EventClusterGovParamsSet struct {
 // DDC Customers events:
 
 type EventDeposited struct {
-	Phase  types.Phase
-	Who    types.AccountID
-	Amount types.U128
-	Topics []types.Hash
+	Phase   types.Phase
+	OwnerId types.AccountID
+	Amount  types.U128
+	Topics  []types.Hash
 }
 
 type EventInitialDepositUnlock struct {
-	Phase  types.Phase
-	Who    types.AccountID
-	Amount types.U128
-	Topics []types.Hash
+	Phase   types.Phase
+	OwnerId types.AccountID
+	Amount  types.U128
+	Topics  []types.Hash
 }
 
 type EventCustomersWithdrawn struct {
-	Phase  types.Phase
-	Who    types.AccountID
-	Amount types.U128
-	Topics []types.Hash
+	Phase   types.Phase
+	OwnerId types.AccountID
+	Amount  types.U128
+	Topics  []types.Hash
 }
 
 type EventCustomersCharged struct {
-	Phase  types.Phase
-	Who    types.AccountID
-	Amount types.U128
-	Topics []types.Hash
+	Phase            types.Phase
+	OwnerId          types.AccountID
+	Charged          types.U128
+	ExpectedToCharge types.U128
+	Topics           []types.Hash
 }
 
 type EventBucketCreated struct {
@@ -459,6 +475,12 @@ type EventBucketCreated struct {
 }
 
 type EventBucketUpdated struct {
+	Phase    types.Phase
+	BucketId types.U64
+	Topics   []types.Hash
+}
+
+type EventBucketRemoved struct {
 	Phase    types.Phase
 	BucketId types.U64
 	Topics   []types.Hash
@@ -512,6 +534,7 @@ type Events struct {
 	DdcPayouts_RewardingFinished           []EventRewardingFinished           //nolint:stylecheck,golint
 	DdcPayouts_BillingReportFinalized      []EventBillingReportFinalized      //nolint:stylecheck,golint
 	DdcPayouts_AuthorisedCaller            []EventAuthorisedCaller            //nolint:stylecheck,golint
+	DdcPayouts_ChargeError                 []EventChargeError                 //nolint:stylecheck,golint
 	DdcStaking_Bonded                      []EventBonded                      //nolint:stylecheck,golint
 	DdcStaking_Unbonded                    []EventUnbonded                    //nolint:stylecheck,golint
 	DdcStaking_Withdrawn                   []EventWithdrawn                   //nolint:stylecheck,golint
@@ -534,4 +557,5 @@ type Events struct {
 	DdcCustomers_Charged                   []EventCustomersCharged            //nolint:stylecheck,golint
 	DdcCustomers_BucketCreated             []EventBucketCreated               //nolint:stylecheck,golint
 	DdcCustomers_BucketUpdated             []EventBucketUpdated               //nolint:stylecheck,golint
+	DdcCustomers_BucketRemoved             []EventBucketRemoved               //nolint:stylecheck,golint
 }
