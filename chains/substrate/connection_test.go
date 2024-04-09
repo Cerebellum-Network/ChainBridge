@@ -6,7 +6,7 @@ package substrate
 import (
 	"testing"
 
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v9/types"
 )
 
 func TestConnect_QueryStorage(t *testing.T) {

@@ -8,8 +8,8 @@ import (
 	"time"
 
 	utils "github.com/Cerebellum-Network/ChainBridge/shared/substrate"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v9/types"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v9/types/codec"
 	"github.com/ChainSafe/log15"
 )
 
