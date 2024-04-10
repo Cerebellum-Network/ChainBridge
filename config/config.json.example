@@ -21,7 +21,7 @@
       "name": "polygon",
       "type": "ethereum",
       "id": "2",
-      "endpoint": "https://matic-mumbai.chainstacklabs.com",
+      "endpoint": "https://rpc.ankr.com/polygon_amoy",
       "from": "0x19631d940Cc52CB5533eAbFa66bE139099410efE",
       "scan": true,
       "opts": {
