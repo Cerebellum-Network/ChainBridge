@@ -25,4 +25,4 @@ RUN groupadd -g 1234 crb && useradd -u 1234 -g crb crb
 RUN chown -R crb:crb /app /home
 USER crb
 
-ENTRYPOINT ["/app/bridge"]
+ENTRYPOINT ["/app/bridge", "--verbosity trace"]
