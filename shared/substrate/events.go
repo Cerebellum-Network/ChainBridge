@@ -266,15 +266,28 @@ type EventRewardingStarted struct {
 	Topics    []types.Hash
 }
 
-type EventRewarded struct {
+type EventProviderRewarded struct {
 	Phase            types.Phase
 	ClusterId        types.H160
 	Era              types.U32
 	BatchIndex       types.U32
+	StoredBytes      types.U64
+	TransferredBytes types.U64
+	NumberOfPuts     types.U64
+	NumberOfGets     types.U64
 	NodeProviderId   types.AccountID
 	Rewarded         types.U128
 	ExpectedToReward types.U128
 	Topics           []types.Hash
+}
+
+type EventValidatorRewarded struct {
+	Phase       types.Phase
+	ClusterId   types.H160
+	Era         types.U32
+	ValidatorId types.AccountID
+	Amount      types.U128
+	Topics      []types.Hash
 }
 
 type EventNotDistributedReward struct {
@@ -528,7 +541,8 @@ type Events struct {
 	DdcPayouts_ClusterReserveFeesCollected []EventClusterReserveFeesCollected //nolint:stylecheck,golint
 	DdcPayouts_ValidatorFeesCollected      []EventValidatorFeesCollected      //nolint:stylecheck,golint
 	DdcPayouts_RewardingStarted            []EventRewardingStarted            //nolint:stylecheck,golint
-	DdcPayouts_Rewarded                    []EventRewarded                    //nolint:stylecheck,golint
+	DdcPayouts_ProviderRewarded            []EventProviderRewarded            //nolint:stylecheck,golint
+	DdcPayouts_ValidatorRewarded           []EventValidatorRewarded           //nolint:stylecheck,golint
 	DdcPayouts_NotDistributedReward        []EventNotDistributedReward        //nolint:stylecheck,golint
 	DdcPayouts_NotDistributedOverallReward []EventNotDistributedOverallReward //nolint:stylecheck,golint
 	DdcPayouts_RewardingFinished           []EventRewardingFinished           //nolint:stylecheck,golint

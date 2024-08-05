@@ -5,9 +5,9 @@ go 1.21
 toolchain go1.21.5
 
 require (
-	github.com/Cerebellum-Network/chainbridge-substrate-events v1.0.0-rc2
-	github.com/Cerebellum-Network/chainbridge-utils v1.2.0-rc2
-	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.3
+	github.com/Cerebellum-Network/chainbridge-substrate-events v1.0.0-rc4
+	github.com/Cerebellum-Network/chainbridge-utils v1.2.0-rc4
+	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.5
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.13.11
 	github.com/prometheus/client_golang v1.18.0
@@ -19,10 +19,10 @@ require (
 require (
 	github.com/ChainSafe/go-schnorrkel v1.1.0 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.13.0 // indirect
-	github.com/btcsuite/btcd/btcec/v2 v2.3.2 // indirect
+	github.com/btcsuite/btcd v0.22.0-beta // indirect
+	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/consensys/bavard v0.1.13 // indirect
 	github.com/consensys/gnark-crypto v0.12.1 // indirect
@@ -39,7 +39,6 @@ require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-stack/stack v1.8.1 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/renameio/v2 v2.0.0 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
@@ -48,7 +47,6 @@ require (
 	github.com/holiman/uint256 v1.2.4 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
 	github.com/mimoo/StrobeGo v0.0.0-20220103164710-9a04d6ca976b // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
@@ -57,15 +55,12 @@ require (
 	github.com/prometheus/client_model v0.5.0 // indirect
 	github.com/prometheus/common v0.45.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
-	github.com/rjeczalik/notify v0.9.3 // indirect
 	github.com/rs/cors v1.10.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
-	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/supranational/blst v0.3.11 // indirect
 	github.com/tklauser/go-sysconf v0.3.13 // indirect
 	github.com/tklauser/numcpus v0.7.0 // indirect
-	github.com/vedhavyas/go-subkey v1.0.3 // indirect
 	github.com/vedhavyas/go-subkey/v2 v2.0.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20231213231151-1d8dd44e695e // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
