@@ -5,9 +5,9 @@ go 1.21
 toolchain go1.21.5
 
 require (
-	github.com/Cerebellum-Network/chainbridge-substrate-events v1.0.0-rc3
-	github.com/Cerebellum-Network/chainbridge-utils v1.2.0-rc3
-	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.4
+	github.com/Cerebellum-Network/chainbridge-substrate-events v1.0.0-rc4
+	github.com/Cerebellum-Network/chainbridge-utils v1.2.0-rc4
+	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.5
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.13.11
 	github.com/prometheus/client_golang v1.18.0
