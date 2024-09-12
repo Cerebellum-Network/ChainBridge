@@ -4,7 +4,7 @@
       "name": "eth",
       "type": "ethereum",
       "id": "0",
-      "endpoint": "https://rpc.goerli.mudit.blog",
+      "endpoint": "https://sepolia.infura.io",
       "from": "0x19631d940Cc52CB5533eAbFa66bE139099410efE",
       "scan": true,
       "opts": {
